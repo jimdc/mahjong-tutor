@@ -1,4 +1,6 @@
 <div class="tutor" data-controller="tutor">
+  <%= render "shared/learning_nav" %>
+
   <header class="tutor-header">
     <p class="tutor-kicker">Mahjong Tutor</p>
     <h1>Tile Recognition</h1>
@@ -11,6 +13,12 @@
       <span class="tutor-tile-glyph" data-tutor-target="tileGlyph">Loading...</span>
     </div>
     <p class="tutor-explain" data-tutor-target="explain"></p>
+    <div class="tutor-details">
+      <button class="tutor-details__toggle" type="button" data-action="tutor#toggleDetails" data-tutor-target="detailsToggle">
+        Why it’s called that
+      </button>
+      <ul class="tutor-details__list" data-tutor-target="detailsList"></ul>
+    </div>
     <div class="tutor-options" data-tutor-target="options"></div>
     <p class="tutor-feedback" data-tutor-target="feedback"></p>
     <div class="tutor-actions">

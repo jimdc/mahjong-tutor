@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "tutor#index"
   get "tutor" => "tutor#index"
+  get "coach" => "coach#index"
+  get "glossary" => "glossary#index"
 end
