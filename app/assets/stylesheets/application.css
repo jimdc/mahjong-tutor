@@ -151,6 +151,44 @@ h1 {
   color: var(--muted);
 }
 
+.coach-header {
+  margin-bottom: 1rem;
+}
+
+.coach-hand {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 16px;
+  background: #fff8ee;
+  border: 1px solid rgba(123, 45, 28, 0.1);
+  margin-bottom: 1.25rem;
+}
+
+.coach-tile {
+  background: #fffdf9;
+  border: 1px solid rgba(123, 45, 28, 0.2);
+  border-radius: 12px;
+  padding: 0.35rem 0.7rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.coach-prompt {
+  margin: 0 0 0.75rem;
+}
+
+.coach-choices .tutor-option {
+  font-size: 0.9rem;
+}
+
+.coach-tip {
+  margin-top: 0.75rem;
+  color: var(--accent-deep);
+  font-weight: 600;
+}
+
 .coach-roadmap {
   display: grid;
   gap: 0.75rem;

@@ -7,14 +7,22 @@
     <p class="tutor-subtitle">Build a winning hand step-by-step and learn why each choice works.</p>
   </header>
 
-  <section class="tutor-card">
-    <h2 class="coach-title">Coming next</h2>
-    <p class="coach-text">We will guide you through forming melds (chows, pungs, kongs) and a pair.
-    You will practice spotting efficient tiles and avoiding dead ends.</p>
-    <div class="coach-roadmap">
-      <div class="coach-step">Start with a 13-tile hand.</div>
-      <div class="coach-step">Pick the best discard with a hint.</div>
-      <div class="coach-step">See the live shanten-style progress indicator.</div>
+  <section class="tutor-card" data-controller="coach">
+    <div class="coach-header">
+      <h2 class="coach-title" data-coach-target="title">Hand Coach</h2>
+      <p class="coach-text" data-coach-target="explain"></p>
+    </div>
+
+    <div class="coach-hand" data-coach-target="hand"></div>
+
+    <h3 class="coach-prompt">Which tile should you discard?</h3>
+    <div class="tutor-options coach-choices" data-coach-target="choices"></div>
+
+    <p class="tutor-feedback" data-coach-target="feedback"></p>
+    <p class="coach-tip" data-coach-target="tip"></p>
+
+    <div class="tutor-actions">
+      <button class="tutor-next" type="button" data-coach-target="next" data-action="coach#nextScenario">Next hand</button>
     </div>
   </section>
 </div>
