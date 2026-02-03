@@ -335,6 +335,12 @@ h1 {
   font-size: 0.95rem;
 }
 
+.glossary-lang {
+  font-weight: 600;
+  color: var(--accent-deep);
+  font-size: 0.9rem;
+}
+
 .rule-diff {
   border: 1px solid rgba(123, 45, 28, 0.12);
   border-radius: 14px;
