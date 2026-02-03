@@ -40,10 +40,10 @@ const SCENARIOS = [
       "Red Dragon", "9 Bamboo"
     ],
     groups: [
-      { label: "Meld (Chow)", tiles: ["1 Dot", "2 Dot", "3 Dot"] },
+      { label: "Meld (Chow / 吃 chī)", tiles: ["1 Dot", "2 Dot", "3 Dot"] },
       { label: "Partial (Run)", tiles: ["2 Character", "3 Character", "4 Character"] },
       { label: "Partial (Run)", tiles: ["7 Bamboo", "8 Bamboo"] },
-      { label: "Pair", tiles: ["East Wind", "East Wind"] },
+      { label: "Pair (将/对子 jiàng/duìzi)", tiles: ["East Wind", "East Wind"] },
       { label: "Singles", tiles: ["4 Dot", "Red Dragon", "9 Bamboo"] }
     ],
     bestDiscard: "9 Bamboo",
@@ -61,10 +61,10 @@ const SCENARIOS = [
       "9 Dot", "1 Character"
     ],
     groups: [
-      { label: "Meld (Chow)", tiles: ["2 Dot", "3 Dot", "4 Dot"] },
-      { label: "Meld (Chow)", tiles: ["5 Bamboo", "6 Bamboo", "7 Bamboo"] },
+      { label: "Meld (Chow / 吃 chī)", tiles: ["2 Dot", "3 Dot", "4 Dot"] },
+      { label: "Meld (Chow / 吃 chī)", tiles: ["5 Bamboo", "6 Bamboo", "7 Bamboo"] },
       { label: "Partial (Run)", tiles: ["3 Character", "4 Character", "5 Character"] },
-      { label: "Pair", tiles: ["White Dragon", "White Dragon"] },
+      { label: "Pair (将/对子 jiàng/duìzi)", tiles: ["White Dragon", "White Dragon"] },
       { label: "Singles", tiles: ["9 Dot", "1 Character"] }
     ],
     bestDiscard: "1 Character",
@@ -82,10 +82,10 @@ const SCENARIOS = [
       "9 Bamboo", "1 Dot"
     ],
     groups: [
-      { label: "Meld (Chow)", tiles: ["2 Dot", "3 Dot", "4 Dot"] },
-      { label: "Meld (Chow)", tiles: ["6 Bamboo", "7 Bamboo", "8 Bamboo"] },
+      { label: "Meld (Chow / 吃 chī)", tiles: ["2 Dot", "3 Dot", "4 Dot"] },
+      { label: "Meld (Chow / 吃 chī)", tiles: ["6 Bamboo", "7 Bamboo", "8 Bamboo"] },
       { label: "Partial (Run)", tiles: ["4 Character", "5 Character", "6 Character"] },
-      { label: "Pair", tiles: ["Green Dragon", "Green Dragon"] },
+      { label: "Pair (将/对子 jiàng/duìzi)", tiles: ["Green Dragon", "Green Dragon"] },
       { label: "Singles", tiles: ["9 Bamboo", "1 Dot"] }
     ],
     bestDiscard: "1 Dot",
