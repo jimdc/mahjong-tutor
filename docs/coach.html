@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mahjong Tutor - Hand Coach</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="tutor">
+      <nav class="learning-nav">
+        <a class="learning-nav__link" href="index.html">1. Tile Quiz</a>
+        <a class="learning-nav__link" href="coach.html">2. Hand Coach</a>
+        <a class="learning-nav__link" href="glossary.html">3. Rules & Glossary</a>
+      </nav>
+
+      <header class="tutor-header">
+        <p class="tutor-kicker">Step 2</p>
+        <h1>Hand Coach</h1>
+        <p class="tutor-subtitle">Build a winning hand step-by-step and learn why each choice works.</p>
+      </header>
+
+      <section class="tutor-card">
+        <div class="coach-header">
+          <h2 class="coach-title" id="coachTitle">Hand Coach</h2>
+          <p class="coach-text" id="coachExplain"></p>
+        </div>
+
+        <div class="coach-hand" id="coachHand"></div>
+
+        <h3 class="coach-prompt">Which tile should you discard?</h3>
+        <div class="tutor-options coach-choices" id="coachChoices"></div>
+
+        <p class="tutor-feedback" id="coachFeedback"></p>
+        <p class="coach-tip" id="coachTip"></p>
+
+        <div class="tutor-actions">
+          <button class="tutor-next" id="coachNext" type="button">Next hand</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="coach.js"></script>
+  </body>
+</html>
