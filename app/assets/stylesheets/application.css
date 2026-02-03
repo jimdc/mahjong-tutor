@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Space+Grotesk:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Noto+Sans+Symbols+2&family=Space+Grotesk:wght@400;600&display=swap");
 
 :root {
   --ink: #141321;
@@ -64,9 +64,9 @@ h1 {
 }
 
 .tutor-tile {
-  font-family: "Fraunces", "Georgia", serif;
-  font-size: clamp(2.2rem, 6vw, 3.2rem);
-  letter-spacing: 0.08em;
+  font-family: "Noto Sans Symbols 2", "Segoe UI Symbol", "Apple Symbols", "Noto Color Emoji", "Fraunces", "Georgia", serif;
+  font-size: clamp(3.2rem, 8vw, 5rem);
+  letter-spacing: 0.04em;
   text-align: center;
   padding: 2.2rem 1.5rem;
   border-radius: 18px;

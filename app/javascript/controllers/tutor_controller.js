@@ -1,28 +1,30 @@
 import { Controller } from "@hotwired/stimulus"
 
+const glyph = codePoint => String.fromCodePoint(codePoint)
+
 const TILES = [
   ...Array.from({ length: 9 }, (_, i) => ({
     id: `dot-${i + 1}`,
     label: `${i + 1} Dot`,
-    display: `${i + 1} DOT`
+    display: glyph(0x1f019 + i)
   })),
   ...Array.from({ length: 9 }, (_, i) => ({
     id: `bamboo-${i + 1}`,
     label: `${i + 1} Bamboo`,
-    display: `${i + 1} BAMBOO`
+    display: glyph(0x1f010 + i)
   })),
   ...Array.from({ length: 9 }, (_, i) => ({
     id: `character-${i + 1}`,
     label: `${i + 1} Character`,
-    display: `${i + 1} CHARACTER`
+    display: glyph(0x1f007 + i)
   })),
-  { id: "wind-east", label: "East Wind", display: "EAST WIND" },
-  { id: "wind-south", label: "South Wind", display: "SOUTH WIND" },
-  { id: "wind-west", label: "West Wind", display: "WEST WIND" },
-  { id: "wind-north", label: "North Wind", display: "NORTH WIND" },
-  { id: "dragon-red", label: "Red Dragon", display: "RED DRAGON" },
-  { id: "dragon-green", label: "Green Dragon", display: "GREEN DRAGON" },
-  { id: "dragon-white", label: "White Dragon", display: "WHITE DRAGON" }
+  { id: "wind-east", label: "East Wind", display: glyph(0x1f000) },
+  { id: "wind-south", label: "South Wind", display: glyph(0x1f001) },
+  { id: "wind-west", label: "West Wind", display: glyph(0x1f002) },
+  { id: "wind-north", label: "North Wind", display: glyph(0x1f003) },
+  { id: "dragon-red", label: "Red Dragon", display: glyph(0x1f004) },
+  { id: "dragon-green", label: "Green Dragon", display: glyph(0x1f005) },
+  { id: "dragon-white", label: "White Dragon", display: glyph(0x1f006) }
 ]
 
 function shuffle(values) {
@@ -49,6 +51,7 @@ export default class extends Controller {
     this.choices = shuffle([this.currentTile, ...distractors])
 
     this.tileTarget.textContent = this.currentTile.display
+    this.tileTarget.setAttribute("aria-label", this.currentTile.label)
     this.feedbackTarget.textContent = ""
     this.nextTarget.disabled = true
 
