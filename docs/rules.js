@@ -1,6 +1,7 @@
 const FLOW_STEPS = [
   {
     caption: "Start your turn with a 13-tile hand.",
+    turn: "Your turn",
     tiles: [
       "MJ2bing", "MJ3bing", "MJ4bing",
       "MJ5tiao", "MJ6tiao", "MJ7tiao",
@@ -9,11 +10,14 @@ const FLOW_STEPS = [
       "MJReddragon", "MJ9tiao"
     ],
     pool: ["MJ1wan", "MJ7bing"],
+    opponentPool: ["MJ3tiao"],
+    opponentHandCount: 13,
     claim: null,
     claimNote: ""
   },
   {
     caption: "Draw a tile to make 14 tiles.",
+    turn: "Your turn",
     tiles: [
       "MJ2bing", "MJ3bing", "MJ4bing",
       "MJ5tiao", "MJ6tiao", "MJ7tiao",
@@ -22,11 +26,14 @@ const FLOW_STEPS = [
       "MJReddragon", "MJ9tiao", "MJ8tiao"
     ],
     pool: ["MJ1wan", "MJ7bing"],
+    opponentPool: ["MJ3tiao"],
+    opponentHandCount: 13,
     claim: null,
     claimNote: ""
   },
   {
     caption: "Discard one tile (here, the 9 Bamboo).",
+    turn: "Your turn",
     tiles: [
       "MJ2bing", "MJ3bing", "MJ4bing",
       "MJ5tiao", "MJ6tiao", "MJ7tiao",
@@ -35,11 +42,14 @@ const FLOW_STEPS = [
       "MJReddragon", "MJ8tiao"
     ],
     pool: ["MJ1wan", "MJ7bing", "MJ9tiao"],
+    opponentPool: ["MJ3tiao"],
+    opponentHandCount: 13,
     claim: null,
     claimNote: ""
   },
   {
     caption: "An opponent claims your discard to complete a pung.",
+    turn: "Opponent turn",
     tiles: [
       "MJ2bing", "MJ3bing", "MJ4bing",
       "MJ5tiao", "MJ6tiao", "MJ7tiao",
@@ -48,11 +58,14 @@ const FLOW_STEPS = [
       "MJReddragon", "MJ8tiao"
     ],
     pool: ["MJ1wan", "MJ7bing"],
+    opponentPool: ["MJ3tiao"],
+    opponentHandCount: 14,
     claim: "MJ9tiao",
     claimNote: "Claimed discard leaves your pool and forms a meld for the opponent."
   },
   {
     caption: "If you complete a winning hand, declare win immediately.",
+    turn: "Your turn",
     tiles: [
       "MJ2bing", "MJ3bing", "MJ4bing",
       "MJ5tiao", "MJ6tiao", "MJ7tiao",
@@ -61,6 +74,8 @@ const FLOW_STEPS = [
       "MJReddragon", "MJReddragon"
     ],
     pool: ["MJ1wan", "MJ7bing"],
+    opponentPool: ["MJ3tiao", "MJ9tiao"],
+    opponentHandCount: 13,
     claim: null,
     claimNote: ""
   }
@@ -73,9 +88,12 @@ const state = {
 const elements = {
   hand: document.getElementById("flowHand"),
   pool: document.getElementById("flowPool"),
+  opponentPool: document.getElementById("flowOpponentPool"),
+  opponentHand: document.getElementById("flowOpponentHand"),
   claim: document.getElementById("flowClaim"),
   claimNote: document.getElementById("flowClaimNote"),
   caption: document.getElementById("flowCaption"),
+  turn: document.getElementById("flowTurn"),
   next: document.getElementById("flowNext"),
   prev: document.getElementById("flowPrev")
 }
@@ -91,10 +109,21 @@ const renderTiles = (target, tiles, className) => {
   })
 }
 
+const renderFaceDown = (target, count) => {
+  target.innerHTML = ""
+  for (let i = 0; i < count; i += 1) {
+    const back = document.createElement("div")
+    back.className = "tile-back"
+    target.appendChild(back)
+  }
+}
+
 const render = () => {
   const step = FLOW_STEPS[state.index]
   renderTiles(elements.hand, step.tiles)
   renderTiles(elements.pool, step.pool)
+  renderTiles(elements.opponentPool, step.opponentPool || [])
+  renderFaceDown(elements.opponentHand, step.opponentHandCount || 13)
 
   elements.claim.innerHTML = ""
   if (step.claim) {
@@ -111,6 +140,7 @@ const render = () => {
   }
 
   elements.caption.textContent = step.caption
+  elements.turn.textContent = step.turn || "Your turn"
   elements.prev.disabled = state.index === 0
   elements.next.disabled = state.index === FLOW_STEPS.length - 1
 }

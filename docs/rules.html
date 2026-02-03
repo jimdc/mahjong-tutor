@@ -25,12 +25,17 @@
         <div class="glossary-section">
           <h2>Turn Flow (Visual)</h2>
           <div class="flow-card">
+            <div class="flow-turn" id="flowTurn">Your turn</div>
             <div class="flow-controls">
               <button class="tutor-option" id="flowPrev" type="button">Back</button>
               <button class="tutor-option" id="flowNext" type="button">Next</button>
             </div>
             <div class="flow-hand" id="flowHand"></div>
             <div class="flow-row">
+              <div class="flow-opponent-hand">
+                <h3>Opponent Hand</h3>
+                <div class="flow-opponent-hand__tiles" id="flowOpponentHand"></div>
+              </div>
               <div class="flow-pool">
                 <h3>Discards</h3>
                 <div class="flow-pool__tiles" id="flowPool"></div>
@@ -40,8 +45,13 @@
                 <div class="flow-opponent__slot" id="flowClaim"></div>
                 <p class="flow-opponent__note" id="flowClaimNote"></p>
               </div>
+              <div class="flow-opponent-pool">
+                <h3>Opponent Discards</h3>
+                <div class="flow-pool__tiles" id="flowOpponentPool"></div>
+              </div>
             </div>
             <p class="flow-caption" id="flowCaption"></p>
+            <p class="glossary-note">Standard Mahjong is 4 players. Each player takes the same turn sequence.</p>
           </div>
         </div>
 
