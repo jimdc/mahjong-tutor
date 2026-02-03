@@ -3,66 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mahjong Tutor - Rules & Glossary</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Mahjong Tutor - Glossary</title>
+    <link rel="stylesheet" href="styles.css?v=20260203" />
   </head>
   <body>
     <div class="tutor">
       <nav class="learning-nav">
         <a class="learning-nav__link" href="index.html">1. Tile Quiz</a>
         <a class="learning-nav__link" href="coach.html">2. Hand Coach</a>
-        <a class="learning-nav__link" href="glossary.html">3. Rules & Glossary</a>
+        <a class="learning-nav__link" href="glossary.html">3. Glossary</a>
+        <a class="learning-nav__link" href="rules.html">4. Rules</a>
       </nav>
 
       <header class="tutor-header">
         <p class="tutor-kicker">Step 3</p>
-        <h1>Rules & Glossary</h1>
-        <p class="tutor-subtitle">Quick definitions for tiles, sets, and the flow of a hand.</p>
+        <h1>Glossary (Zero → Confident)</h1>
+        <p class="tutor-subtitle">Start with zero knowledge and build up the core ideas, with chess/checkers analogies.</p>
       </header>
 
       <section class="tutor-card">
         <div class="glossary-section">
-          <h2>Objective</h2>
-          <p>Build a complete hand before your opponents. In most rule sets, a winning hand is four melds plus one pair. The goal is to finish efficiently and score well based on the tiles and patterns you used.</p>
+          <h2>Tile</h2>
+          <p>A tile is like a chess piece or a checker: it’s a basic unit you collect and combine. You do not move tiles on a board; you build patterns in your hand.</p>
         </div>
 
         <div class="glossary-section">
-          <h2>Tiles At A Glance</h2>
-          <div class="glossary-grid">
-            <div class="glossary-item">
-              <h3>Suit tiles</h3>
-              <p>Dots (circles), Bamboo (sticks), and Characters (wan). Ranked 1–9.</p>
-              <div class="glossary-tiles">
-                <img src="tiles/MJ3bing.svg" alt="3 Dot" />
-                <img src="tiles/MJ5tiao.svg" alt="5 Bamboo" />
-                <img src="tiles/MJ7wan.svg" alt="7 Character" />
-              </div>
-            </div>
-            <div class="glossary-item">
-              <h3>Honor tiles</h3>
-              <p>Winds (East, South, West, North) and Dragons (Red, Green, White).</p>
-              <div class="glossary-tiles">
-                <img src="tiles/MJEastwind.svg" alt="East Wind" />
-                <img src="tiles/MJReddragon.svg" alt="Red Dragon" />
-                <img src="tiles/MJbaida.svg" alt="White Dragon" />
-              </div>
-            </div>
+          <h2>Suit</h2>
+          <p>A suit is like a “color” in cards or a set of similar chess pieces. Mahjong has three suits: Dots, Bamboo, and Characters.</p>
+          <div class="glossary-tiles">
+            <img src="tiles/MJ3bing.svg" alt="3 Dot" />
+            <img src="tiles/MJ5tiao.svg" alt="5 Bamboo" />
+            <img src="tiles/MJ7wan.svg" alt="7 Character" />
           </div>
         </div>
 
         <div class="glossary-section">
-          <h2>Turn Flow</h2>
-          <ol class="glossary-steps">
-            <li>Draw a tile.</li>
-            <li>Check for a win or a strong meld.</li>
-            <li>Discard one tile.</li>
-            <li>Other players may claim the discard (rules vary).</li>
-          </ol>
-          <p class="glossary-note">Some rule sets include special calls, bonuses, or restrictions on when you can claim tiles.</p>
+          <h2>Honor Tiles</h2>
+          <p>Honors are special tiles outside the suits. Think of them like unique pieces in chess (not just another pawn): Winds and Dragons.</p>
+          <div class="glossary-tiles">
+            <img src="tiles/MJEastwind.svg" alt="East Wind" />
+            <img src="tiles/MJReddragon.svg" alt="Red Dragon" />
+            <img src="tiles/MJbaida.svg" alt="White Dragon" />
+          </div>
         </div>
 
         <div class="glossary-section">
-          <h2>Melds and Hands</h2>
+          <h2>Meld</h2>
+          <p>A meld is a completed pattern of tiles, like forming a line of checkers or a tactical motif in chess. Common melds:</p>
           <div class="glossary-grid">
             <div class="glossary-item">
               <h3>Chow (sequence)</h3>
@@ -100,22 +87,18 @@
         </div>
 
         <div class="glossary-section">
-          <h2>Beginner Strategy</h2>
-          <ul class="glossary-list">
-            <li>Favor tiles that connect into sequences or pairs.</li>
-            <li>Discard isolated honors early unless you already have a pair.</li>
-            <li>Build in one or two suits instead of spreading across all three.</li>
-          </ul>
+          <h2>Hand</h2>
+          <p>Your hand is the set of tiles you hold. A winning hand is typically four melds plus one pair. Think of it as “four completed patterns + one double.”</p>
         </div>
 
         <div class="glossary-section">
-          <h2>Advanced Strategy</h2>
-          <ul class="glossary-list">
-            <li>Track safe tiles late in the round to avoid risky discards.</li>
-            <li>Shape your hand to keep multiple winning paths open.</li>
-            <li>Recognize when to pivot from speed to value.</li>
-          </ul>
-          <p class="glossary-note">Exact scoring and risk management differ across rule sets (Riichi, Chinese Official, American, etc.).</p>
+          <h2>Discard</h2>
+          <p>Each turn you choose one tile to throw away. This is like choosing which chess piece to trade or which checker to sacrifice — you want to keep tiles that build patterns.</p>
+        </div>
+
+        <div class="glossary-section">
+          <h2>Safety (Risk)</h2>
+          <p>Late in a hand, some discards are safer than others. This is like “not hanging your queen.” Safe tiles reduce the chance an opponent wins from your discard.</p>
         </div>
       </section>
     </div>
