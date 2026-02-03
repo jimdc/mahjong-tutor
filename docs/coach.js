@@ -1,3 +1,33 @@
+const glyph = codePoint => String.fromCodePoint(codePoint)
+
+const DOT_SVG = number => `tiles/MJ${number}bing.svg`
+const BAMBOO_SVG = number => `tiles/MJ${number}tiao.svg`
+const CHARACTER_SVG = number => `tiles/MJ${number}wan.svg`
+
+const TILE_MAP = {
+  "East Wind": { svg: "tiles/MJEastwind.svg", glyph: glyph(0x1f000) },
+  "South Wind": { svg: "tiles/MJSouthwind.svg", glyph: glyph(0x1f001) },
+  "West Wind": { svg: "tiles/MJWestwind.svg", glyph: glyph(0x1f002) },
+  "North Wind": { svg: "tiles/MJNorthwind.svg", glyph: glyph(0x1f003) },
+  "Red Dragon": { svg: "tiles/MJReddragon.svg", glyph: glyph(0x1f004) },
+  "Green Dragon": { svg: "tiles/MJGreendragon.svg", glyph: glyph(0x1f005) },
+  "White Dragon": { svg: "tiles/MJbaida.svg", glyph: glyph(0x1f006) }
+}
+
+const tileMeta = label => {
+  if (TILE_MAP[label]) return TILE_MAP[label]
+
+  const match = label.match(/^(\d+)\s+(Dot|Bamboo|Character)$/)
+  if (!match) return { svg: null, glyph: label }
+
+  const number = Number(match[1])
+  const suit = match[2]
+
+  if (suit === "Dot") return { svg: DOT_SVG(number), glyph: glyph(0x1f019 + (number - 1)) }
+  if (suit === "Bamboo") return { svg: BAMBOO_SVG(number), glyph: glyph(0x1f010 + (number - 1)) }
+  return { svg: CHARACTER_SVG(number), glyph: glyph(0x1f007 + (number - 1)) }
+}
+
 const SCENARIOS = [
   {
     id: "basic-chow",
@@ -66,13 +96,39 @@ let scenarios = shuffle(SCENARIOS)
 let index = 0
 let current = null
 
+const buildTileNode = label => {
+  const meta = tileMeta(label)
+  const tile = document.createElement("div")
+  tile.className = "coach-tile"
+
+  const img = document.createElement("img")
+  img.className = "coach-tile__img"
+  img.alt = label
+  img.src = meta.svg
+
+  const glyphSpan = document.createElement("span")
+  glyphSpan.className = "coach-tile__glyph"
+  glyphSpan.textContent = meta.glyph
+
+  img.onerror = () => {
+    img.hidden = true
+    glyphSpan.style.opacity = "1"
+  }
+
+  img.onload = () => {
+    glyphSpan.style.opacity = "0"
+  }
+
+  tile.appendChild(img)
+  tile.appendChild(glyphSpan)
+
+  return tile
+}
+
 const renderHand = () => {
   elements.hand.innerHTML = ""
   current.hand.forEach(tile => {
-    const span = document.createElement("span")
-    span.className = "coach-tile"
-    span.textContent = tile
-    elements.hand.appendChild(span)
+    elements.hand.appendChild(buildTileNode(tile))
   })
 }
 
@@ -81,8 +137,29 @@ const renderChoices = () => {
   current.hand.forEach(tile => {
     const button = document.createElement("button")
     button.type = "button"
-    button.className = "tutor-option"
-    button.textContent = tile
+    button.className = "tutor-option coach-choice"
+
+    const meta = tileMeta(tile)
+    const img = document.createElement("img")
+    img.className = "coach-choice__img"
+    img.alt = tile
+    img.src = meta.svg
+
+    const glyphSpan = document.createElement("span")
+    glyphSpan.className = "coach-choice__glyph"
+    glyphSpan.textContent = meta.glyph
+
+    img.onerror = () => {
+      img.hidden = true
+      glyphSpan.style.opacity = "1"
+    }
+
+    img.onload = () => {
+      glyphSpan.style.opacity = "0"
+    }
+
+    button.appendChild(img)
+    button.appendChild(glyphSpan)
     button.addEventListener("click", () => handleChoice(tile))
     elements.choices.appendChild(button)
   })
@@ -116,11 +193,6 @@ const handleChoice = tile => {
   elements.next.disabled = false
   elements.choices.querySelectorAll("button").forEach(button => {
     button.disabled = true
-    if (button.textContent === current.bestDiscard) {
-      button.classList.add("correct")
-    } else if (button.textContent === tile && !correct) {
-      button.classList.add("wrong")
-    }
   })
 }
 
