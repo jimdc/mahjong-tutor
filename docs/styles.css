@@ -527,3 +527,20 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+.coach-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.coach-toggle .tutor-option.is-active {
+  background: #fff0df;
+  border-color: rgba(123, 45, 28, 0.35);
+}
+
+.coach-raw {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}

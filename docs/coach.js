@@ -110,12 +110,15 @@ const elements = {
   choices: document.getElementById("coachChoices"),
   feedback: document.getElementById("coachFeedback"),
   tip: document.getElementById("coachTip"),
-  next: document.getElementById("coachNext")
+  next: document.getElementById("coachNext"),
+  viewGrouped: document.getElementById("coachViewGrouped"),
+  viewRaw: document.getElementById("coachViewRaw")
 }
 
 let scenarios = shuffle(SCENARIOS)
 let index = 0
 let current = null
+let groupedView = true
 
 const buildTileNode = label => {
   const meta = tileMeta(label)
@@ -166,6 +169,24 @@ const renderGroups = () => {
   })
 }
 
+const renderRaw = () => {
+  elements.hand.innerHTML = ""
+  const raw = document.createElement("div")
+  raw.className = "coach-raw"
+  current.hand.forEach(tile => raw.appendChild(buildTileNode(tile)))
+  elements.hand.appendChild(raw)
+}
+
+const renderHand = () => {
+  if (groupedView) {
+    renderGroups()
+  } else {
+    renderRaw()
+  }
+  elements.viewGrouped.classList.toggle("is-active", groupedView)
+  elements.viewRaw.classList.toggle("is-active", !groupedView)
+}
+
 const renderChoices = () => {
   elements.choices.innerHTML = ""
   current.hand.forEach(tile => {
@@ -207,7 +228,7 @@ const loadScenario = () => {
   elements.tip.textContent = ""
   elements.next.disabled = true
 
-  renderGroups()
+  renderHand()
   renderChoices()
 }
 
@@ -237,6 +258,20 @@ const nextScenario = () => {
 
 if (elements.next) {
   elements.next.addEventListener("click", nextScenario)
+}
+
+if (elements.viewGrouped) {
+  elements.viewGrouped.addEventListener("click", () => {
+    groupedView = true
+    renderHand()
+  })
+}
+
+if (elements.viewRaw) {
+  elements.viewRaw.addEventListener("click", () => {
+    groupedView = false
+    renderHand()
+  })
 }
 
 loadScenario()
