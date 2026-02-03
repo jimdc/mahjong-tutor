@@ -3,6 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DEST="$ROOT_DIR/public/tiles"
+USER_AGENT="MahjongTutor/1.0 (+https://github.com/jimdc/mahjong-tutor)"
 
 mkdir -p "$DEST"
 
@@ -16,8 +17,18 @@ FILES=(
 
 for file in "${FILES[@]}"; do
   url="https://commons.wikimedia.org/wiki/Special:FilePath/${file}"
+  tmp="$DEST/.tmp-$file"
   echo "Downloading ${file}"
-  curl -L -o "$DEST/$file" "$url"
+  curl -L -f -A "$USER_AGENT" --retry 3 --retry-delay 1 -o "$tmp" "$url"
+
+  if ! grep -q "<svg" "$tmp"; then
+    echo "Download failed or returned non-SVG for ${file}."
+    rm -f "$tmp"
+    exit 1
+  fi
+
+  mv "$tmp" "$DEST/$file"
+  sleep 0.2
 done
 
 echo "Done. SVG tiles saved to $DEST"
