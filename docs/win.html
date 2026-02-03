@@ -19,16 +19,27 @@
       <header class="tutor-header">
         <p class="tutor-kicker">Step 5</p>
         <h1>Winning (How You Finish)</h1>
-        <p class="tutor-subtitle">What counts as a win and how rule sets differ.</p>
+        <p class="tutor-subtitle">Visual win sequence, common winning shapes, and rule-set differences.</p>
       </header>
 
       <section class="tutor-card">
         <div class="glossary-section">
-          <h2>Standard Winning Shape</h2>
-          <p>Most rule sets require four melds plus one pair. Special hands exist, but this is the baseline.</p>
+          <h2>How You Win (Visual Sequence)</h2>
+          <div class="flow-card">
+            <div class="flow-controls">
+              <button class="tutor-option" id="winPrev" type="button">Back</button>
+              <button class="tutor-option" id="winNext" type="button">Next</button>
+            </div>
+            <div class="flow-hand" id="winHand"></div>
+            <p class="flow-caption" id="winCaption"></p>
+          </div>
+        </div>
+
+        <div class="glossary-section">
+          <h2>Common Winning Shapes</h2>
           <div class="glossary-grid">
             <div class="glossary-item">
-              <h3>Example melds + pair</h3>
+              <h3>Standard Hand (4 melds + pair)</h3>
               <div class="glossary-tiles">
                 <img src="tiles/MJ3bing.svg" alt="3 Dot" />
                 <img src="tiles/MJ4bing.svg" alt="4 Dot" />
@@ -41,6 +52,41 @@
                 <img src="tiles/MJ4wan.svg" alt="4 Character" />
                 <img src="tiles/MJGreendragon.svg" alt="Green Dragon" />
                 <img src="tiles/MJGreendragon.svg" alt="Green Dragon" />
+              </div>
+            </div>
+            <div class="glossary-item">
+              <h3>All Pungs</h3>
+              <p class="glossary-note">Four triplets plus a pair.</p>
+              <div class="glossary-tiles">
+                <img src="tiles/MJ2tiao.svg" alt="2 Bamboo" />
+                <img src="tiles/MJ2tiao.svg" alt="2 Bamboo" />
+                <img src="tiles/MJ2tiao.svg" alt="2 Bamboo" />
+                <img src="tiles/MJ6wan.svg" alt="6 Character" />
+                <img src="tiles/MJ6wan.svg" alt="6 Character" />
+                <img src="tiles/MJ6wan.svg" alt="6 Character" />
+              </div>
+            </div>
+            <div class="glossary-item">
+              <h3>Seven Pairs</h3>
+              <p class="glossary-note">Seven pairs instead of 4 melds + pair (allowed in many rule sets).</p>
+              <div class="glossary-tiles">
+                <img src="tiles/MJ1bing.svg" alt="1 Dot" />
+                <img src="tiles/MJ1bing.svg" alt="1 Dot" />
+                <img src="tiles/MJ3wan.svg" alt="3 Character" />
+                <img src="tiles/MJ3wan.svg" alt="3 Character" />
+                <img src="tiles/MJReddragon.svg" alt="Red Dragon" />
+                <img src="tiles/MJReddragon.svg" alt="Red Dragon" />
+              </div>
+            </div>
+            <div class="glossary-item">
+              <h3>Pure Suit</h3>
+              <p class="glossary-note">All tiles from one suit (honors may be excluded depending on rules).</p>
+              <div class="glossary-tiles">
+                <img src="tiles/MJ2bing.svg" alt="2 Dot" />
+                <img src="tiles/MJ3bing.svg" alt="3 Dot" />
+                <img src="tiles/MJ4bing.svg" alt="4 Dot" />
+                <img src="tiles/MJ5bing.svg" alt="5 Dot" />
+                <img src="tiles/MJ6bing.svg" alt="6 Dot" />
               </div>
             </div>
           </div>
@@ -85,5 +131,6 @@
     </div>
 
     <script src="tile_labels.js?v=20260203"></script>
+    <script src="win.js?v=20260203"></script>
   </body>
 </html>
