@@ -303,6 +303,38 @@ h1 {
   margin-top: 0;
 }
 
+.glossary-section {
+  margin-bottom: 2rem;
+}
+
+.glossary-tiles {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.glossary-tiles img {
+  width: 56px;
+  height: 78px;
+  object-fit: contain;
+}
+
+.glossary-steps {
+  padding-left: 1.3rem;
+  color: var(--muted);
+}
+
+.glossary-list {
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.glossary-note {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 @media (max-width: 600px) {
   .tutor-card {
     padding: 1.75rem;
