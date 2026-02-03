@@ -470,3 +470,60 @@ h1 {
   flex-wrap: wrap;
   gap: 0.4rem;
 }
+
+.flow-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1rem;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.flow-pool h3,
+.flow-opponent h3 {
+  margin: 0 0 0.5rem;
+}
+
+.flow-pool__tiles,
+.flow-opponent__slot {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  min-height: 72px;
+  padding: 0.5rem;
+  border-radius: 12px;
+  border: 1px dashed rgba(123, 45, 28, 0.2);
+  background: #fffdf9;
+}
+
+.flow-opponent__slot.is-claim {
+  border-style: solid;
+  border-color: rgba(123, 45, 28, 0.35);
+  background: #fff4e6;
+}
+
+.flow-claim {
+  animation: claim-pop 0.5s ease;
+}
+
+.flow-opponent__note {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@keyframes claim-pop {
+  from {
+    transform: translateY(-6px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .flow-row {
+    grid-template-columns: 1fr;
+  }
+}
