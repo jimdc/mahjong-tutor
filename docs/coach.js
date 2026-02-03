@@ -39,6 +39,13 @@ const SCENARIOS = [
       "East Wind", "East Wind",
       "Red Dragon", "9 Bamboo"
     ],
+    groups: [
+      { label: "Meld (Chow)", tiles: ["1 Dot", "2 Dot", "3 Dot"] },
+      { label: "Partial (Run)", tiles: ["2 Character", "3 Character", "4 Character"] },
+      { label: "Partial (Run)", tiles: ["7 Bamboo", "8 Bamboo"] },
+      { label: "Pair", tiles: ["East Wind", "East Wind"] },
+      { label: "Singles", tiles: ["4 Dot", "Red Dragon", "9 Bamboo"] }
+    ],
     bestDiscard: "9 Bamboo",
     reason: "It is isolated. Keeping 7-8 Bamboo creates a potential 6-7-8 or 7-8-9 chow, but only if you see 6 or 9 Bamboo later.",
     tip: "Look for tiles that do not connect to a sequence or pair."
@@ -53,6 +60,13 @@ const SCENARIOS = [
       "White Dragon", "White Dragon",
       "9 Dot", "1 Character"
     ],
+    groups: [
+      { label: "Meld (Chow)", tiles: ["2 Dot", "3 Dot", "4 Dot"] },
+      { label: "Meld (Chow)", tiles: ["5 Bamboo", "6 Bamboo", "7 Bamboo"] },
+      { label: "Partial (Run)", tiles: ["3 Character", "4 Character", "5 Character"] },
+      { label: "Pair", tiles: ["White Dragon", "White Dragon"] },
+      { label: "Singles", tiles: ["9 Dot", "1 Character"] }
+    ],
     bestDiscard: "1 Character",
     reason: "It does not extend any existing run and does not make a pair. You already have a pair in White Dragons.",
     tip: "Once you have a pair, focus on clean melds."
@@ -66,6 +80,13 @@ const SCENARIOS = [
       "4 Character", "5 Character", "6 Character",
       "Green Dragon", "Green Dragon",
       "9 Bamboo", "1 Dot"
+    ],
+    groups: [
+      { label: "Meld (Chow)", tiles: ["2 Dot", "3 Dot", "4 Dot"] },
+      { label: "Meld (Chow)", tiles: ["6 Bamboo", "7 Bamboo", "8 Bamboo"] },
+      { label: "Partial (Run)", tiles: ["4 Character", "5 Character", "6 Character"] },
+      { label: "Pair", tiles: ["Green Dragon", "Green Dragon"] },
+      { label: "Singles", tiles: ["9 Bamboo", "1 Dot"] }
     ],
     bestDiscard: "1 Dot",
     reason: "The 1 Dot is isolated. The Green Dragon pair is valuable and can become a scoring pung.",
@@ -125,10 +146,23 @@ const buildTileNode = label => {
   return tile
 }
 
-const renderHand = () => {
+const renderGroups = () => {
   elements.hand.innerHTML = ""
-  current.hand.forEach(tile => {
-    elements.hand.appendChild(buildTileNode(tile))
+  current.groups.forEach(group => {
+    const groupEl = document.createElement("div")
+    groupEl.className = "coach-group"
+
+    const label = document.createElement("span")
+    label.className = "coach-group__label"
+    label.textContent = group.label
+
+    const tiles = document.createElement("div")
+    tiles.className = "coach-group__tiles"
+    group.tiles.forEach(tile => tiles.appendChild(buildTileNode(tile)))
+
+    groupEl.appendChild(label)
+    groupEl.appendChild(tiles)
+    elements.hand.appendChild(groupEl)
   })
 }
 
@@ -173,7 +207,7 @@ const loadScenario = () => {
   elements.tip.textContent = ""
   elements.next.disabled = true
 
-  renderHand()
+  renderGroups()
   renderChoices()
 }
 
