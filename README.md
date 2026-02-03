@@ -1,13 +1,15 @@
 # Mahjong Tutor
 
-A fast, static Mahjong learning app designed for GitHub Pages. It focuses on visual recognition, decision practice, and a beginner-friendly glossary with a separate rules guide.
+A fast, static Mahjong learning app designed for GitHub Pages. It focuses on visual recognition, decision practice, a beginner-friendly glossary, and separate rules + winning guides.
 
 ## Current Features
 - Tile Recognition quiz with real SVG tiles and Unicode fallback.
 - Context notes and expandable “Why it’s called that” explanations.
 - Hand Coach: interactive discard decisions with feedback and tips.
-- Glossary: zero-to-confident concepts with chess/checkers analogies.
-- Rules: turn flow, calls, and winning conditions.
+- Raw vs grouped hand toggle for intuition building.
+- Glossary: zero-to-confident concepts with chess/checkers analogies and Mandarin terms.
+- Rules: visual turn flow with opponent lane and discard pool.
+- Winning: rule-set differences and example hands.
 - Fully static site under `docs/` for GitHub Pages.
 - Cache-busted CSS/JS via `?v=YYYYMMDD` query strings.
 

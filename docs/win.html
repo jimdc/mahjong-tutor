@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mahjong Tutor - Winning</title>
+    <link rel="stylesheet" href="styles.css?v=20260203" />
+  </head>
+  <body>
+    <div class="tutor">
+      <nav class="learning-nav">
+        <a class="learning-nav__link" href="index.html">1. Tile Quiz</a>
+        <a class="learning-nav__link" href="coach.html">2. Hand Coach</a>
+        <a class="learning-nav__link" href="glossary.html">3. Glossary</a>
+        <a class="learning-nav__link" href="rules.html">4. Rules</a>
+        <a class="learning-nav__link" href="win.html">5. Winning</a>
+      </nav>
+
+      <header class="tutor-header">
+        <p class="tutor-kicker">Step 5</p>
+        <h1>Winning (How You Finish)</h1>
+        <p class="tutor-subtitle">What counts as a win and how rule sets differ.</p>
+      </header>
+
+      <section class="tutor-card">
+        <div class="glossary-section">
+          <h2>Standard Winning Shape</h2>
+          <p>Most rule sets require four melds plus one pair. Special hands exist, but this is the baseline.</p>
+          <div class="glossary-grid">
+            <div class="glossary-item">
+              <h3>Example melds + pair</h3>
+              <div class="glossary-tiles">
+                <img src="tiles/MJ3bing.svg" alt="3 Dot" />
+                <img src="tiles/MJ4bing.svg" alt="4 Dot" />
+                <img src="tiles/MJ5bing.svg" alt="5 Dot" />
+                <img src="tiles/MJ7tiao.svg" alt="7 Bamboo" />
+                <img src="tiles/MJ7tiao.svg" alt="7 Bamboo" />
+                <img src="tiles/MJ7tiao.svg" alt="7 Bamboo" />
+                <img src="tiles/MJ2wan.svg" alt="2 Character" />
+                <img src="tiles/MJ3wan.svg" alt="3 Character" />
+                <img src="tiles/MJ4wan.svg" alt="4 Character" />
+                <img src="tiles/MJGreendragon.svg" alt="Green Dragon" />
+                <img src="tiles/MJGreendragon.svg" alt="Green Dragon" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glossary-section">
+          <h2>Winning Differences by Rule Set <span class="glossary-lang">(胡 hú)</span></h2>
+          <div class="glossary-grid">
+            <div class="rule-diff">
+              <h3>Riichi (Japanese)</h3>
+              <p>You must have a yaku (a scoring pattern) to win. Riichi is a declaration when you are one tile away.</p>
+              <div class="rule-diff__example">
+                <img src="tiles/MJ2tiao.svg" alt="2 Bamboo" />
+                <img src="tiles/MJ3tiao.svg" alt="3 Bamboo" />
+                <img src="tiles/MJ4tiao.svg" alt="4 Bamboo" />
+              </div>
+              <p class="glossary-note">Example yaku: a simple sequence or a dragon pung.</p>
+            </div>
+            <div class="rule-diff">
+              <h3>Chinese Official</h3>
+              <p>You can win with many patterns, but you must reach a minimum points threshold (often 8 points).</p>
+              <div class="rule-diff__example">
+                <img src="tiles/MJReddragon.svg" alt="Red Dragon" />
+                <img src="tiles/MJReddragon.svg" alt="Red Dragon" />
+                <img src="tiles/MJReddragon.svg" alt="Red Dragon" />
+              </div>
+              <p class="glossary-note">Example: dragon pung gives extra points.</p>
+            </div>
+            <div class="rule-diff">
+              <h3>American Mahjong</h3>
+              <p>Hands are built to match a yearly card of specific patterns. You typically cannot win without a card pattern.</p>
+              <div class="rule-diff__example">
+                <img src="tiles/MJ1bing.svg" alt="1 Dot" />
+                <img src="tiles/MJ1bing.svg" alt="1 Dot" />
+                <img src="tiles/MJ1bing.svg" alt="1 Dot" />
+              </div>
+              <p class="glossary-note">The card defines the winning hand types each year.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="tile_labels.js?v=20260203"></script>
+  </body>
+</html>
