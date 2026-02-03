@@ -335,6 +335,65 @@ h1 {
   font-size: 0.95rem;
 }
 
+.rule-diff {
+  border: 1px solid rgba(123, 45, 28, 0.12);
+  border-radius: 14px;
+  padding: 1rem;
+  background: #fff8ee;
+}
+
+.rule-diff h3 {
+  margin-top: 0;
+}
+
+.rule-diff__example {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+}
+
+.rule-diff__example img {
+  width: 48px;
+  height: 68px;
+  object-fit: contain;
+}
+
+.flow-card {
+  border: 1px solid rgba(123, 45, 28, 0.12);
+  border-radius: 16px;
+  padding: 1rem;
+  background: #fff8ee;
+}
+
+.flow-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.flow-hand {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background: #fffdf9;
+  border: 1px solid rgba(123, 45, 28, 0.1);
+  margin-bottom: 0.5rem;
+}
+
+.flow-hand img {
+  width: 44px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.flow-caption {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 @media (max-width: 600px) {
   .tutor-card {
     padding: 1.75rem;
