@@ -2,29 +2,81 @@ import { Controller } from "@hotwired/stimulus"
 
 const glyph = codePoint => String.fromCodePoint(codePoint)
 
+const DOT_SVG = number => `/tiles/MJ${number}bing.svg`
+const BAMBOO_SVG = number => `/tiles/MJ${number}tiao.svg`
+const CHARACTER_SVG = number => `/tiles/MJ${number}wan.svg`
+
 const TILES = [
   ...Array.from({ length: 9 }, (_, i) => ({
     id: `dot-${i + 1}`,
     label: `${i + 1} Dot`,
-    display: glyph(0x1f019 + i)
+    display: glyph(0x1f019 + i),
+    svg: DOT_SVG(i + 1),
+    explain: "Dots (circles) resemble coins. The number is the count of circles."
   })),
   ...Array.from({ length: 9 }, (_, i) => ({
     id: `bamboo-${i + 1}`,
     label: `${i + 1} Bamboo`,
-    display: glyph(0x1f010 + i)
+    display: glyph(0x1f010 + i),
+    svg: BAMBOO_SVG(i + 1),
+    explain: "Bamboo (sticks) are a suit; the number shows how many bamboos."
   })),
   ...Array.from({ length: 9 }, (_, i) => ({
     id: `character-${i + 1}`,
     label: `${i + 1} Character`,
-    display: glyph(0x1f007 + i)
+    display: glyph(0x1f007 + i),
+    svg: CHARACTER_SVG(i + 1),
+    explain: "Characters are the “wan” (myriad) suit: a number plus the 10,000 character."
   })),
-  { id: "wind-east", label: "East Wind", display: glyph(0x1f000) },
-  { id: "wind-south", label: "South Wind", display: glyph(0x1f001) },
-  { id: "wind-west", label: "West Wind", display: glyph(0x1f002) },
-  { id: "wind-north", label: "North Wind", display: glyph(0x1f003) },
-  { id: "dragon-red", label: "Red Dragon", display: glyph(0x1f004) },
-  { id: "dragon-green", label: "Green Dragon", display: glyph(0x1f005) },
-  { id: "dragon-white", label: "White Dragon", display: glyph(0x1f006) }
+  {
+    id: "wind-east",
+    label: "East Wind",
+    display: glyph(0x1f000),
+    svg: "/tiles/MJEastwind.svg",
+    explain: "Winds are honor tiles named for the four directions."
+  },
+  {
+    id: "wind-south",
+    label: "South Wind",
+    display: glyph(0x1f001),
+    svg: "/tiles/MJSouthwind.svg",
+    explain: "Winds are honor tiles named for the four directions."
+  },
+  {
+    id: "wind-west",
+    label: "West Wind",
+    display: glyph(0x1f002),
+    svg: "/tiles/MJWestwind.svg",
+    explain: "Winds are honor tiles named for the four directions."
+  },
+  {
+    id: "wind-north",
+    label: "North Wind",
+    display: glyph(0x1f003),
+    svg: "/tiles/MJNorthwind.svg",
+    explain: "Winds are honor tiles named for the four directions."
+  },
+  {
+    id: "dragon-red",
+    label: "Red Dragon",
+    display: glyph(0x1f004),
+    svg: "/tiles/MJReddragon.svg",
+    explain: "Dragons are honor tiles: red, green, and white."
+  },
+  {
+    id: "dragon-green",
+    label: "Green Dragon",
+    display: glyph(0x1f005),
+    svg: "/tiles/MJGreendragon.svg",
+    explain: "Dragons are honor tiles: red, green, and white."
+  },
+  {
+    id: "dragon-white",
+    label: "White Dragon",
+    display: glyph(0x1f006),
+    svg: "/tiles/MJbaida.svg",
+    explain: "Dragons are honor tiles: red, green, and white (often shown as a blank/board)."
+  }
 ]
 
 function shuffle(values) {
@@ -37,7 +89,17 @@ function shuffle(values) {
 }
 
 export default class extends Controller {
-  static targets = ["tile", "options", "feedback", "score", "streak", "next"]
+  static targets = [
+    "tile",
+    "tileImage",
+    "tileGlyph",
+    "options",
+    "feedback",
+    "score",
+    "streak",
+    "next",
+    "explain"
+  ]
 
   connect() {
     this.scoreValue = 0
@@ -50,8 +112,10 @@ export default class extends Controller {
     const distractors = shuffle(TILES.filter(tile => tile.id !== this.currentTile.id)).slice(0, 3)
     this.choices = shuffle([this.currentTile, ...distractors])
 
-    this.tileTarget.textContent = this.currentTile.display
+    this.tileGlyphTarget.textContent = this.currentTile.display
     this.tileTarget.setAttribute("aria-label", this.currentTile.label)
+    this.explainTarget.textContent = this.currentTile.explain
+    this.setTileImage()
     this.feedbackTarget.textContent = ""
     this.nextTarget.disabled = true
 
@@ -97,6 +161,32 @@ export default class extends Controller {
         button.classList.add("wrong")
       }
     })
+  }
+
+  setTileImage() {
+    if (!this.tileImageTarget) {
+      return
+    }
+
+    const svgPath = this.currentTile.svg
+    if (!svgPath) {
+      this.tileImageTarget.hidden = true
+      this.tileGlyphTarget.style.opacity = "1"
+      return
+    }
+
+    this.tileImageTarget.hidden = false
+    this.tileImageTarget.src = svgPath
+    this.tileImageTarget.alt = this.currentTile.label
+
+    this.tileImageTarget.onload = () => {
+      this.tileGlyphTarget.style.opacity = "0"
+    }
+
+    this.tileImageTarget.onerror = () => {
+      this.tileImageTarget.hidden = true
+      this.tileGlyphTarget.style.opacity = "1"
+    }
   }
 
   next() {

@@ -73,6 +73,27 @@ h1 {
   border: 2px solid rgba(123, 45, 28, 0.18);
   background: linear-gradient(145deg, #fff9ef, #f6e7d5);
   margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  gap: 1rem;
+}
+
+.tutor-tile-image {
+  width: min(180px, 60vw);
+  height: auto;
+  display: block;
+}
+
+.tutor-tile-glyph {
+  display: block;
+}
+
+.tutor-explain {
+  margin: 0 0 1.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
 .tutor-options {
