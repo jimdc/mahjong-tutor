@@ -1,0 +1,27 @@
+<div class="tutor" data-controller="tutor">
+  <header class="tutor-header">
+    <p class="tutor-kicker">Mahjong Tutor</p>
+    <h1>Tile Recognition</h1>
+    <p class="tutor-subtitle">Identify the tile by name. Start with the basics: suits, winds, and dragons.</p>
+  </header>
+
+  <section class="tutor-card">
+    <div class="tutor-tile" data-tutor-target="tile">Loading...</div>
+    <div class="tutor-options" data-tutor-target="options"></div>
+    <p class="tutor-feedback" data-tutor-target="feedback"></p>
+    <div class="tutor-actions">
+      <button class="tutor-next" type="button" data-tutor-target="next" data-action="tutor#next">Next tile</button>
+    </div>
+  </section>
+
+  <section class="tutor-stats">
+    <div class="tutor-stat">
+      <span class="tutor-stat-label">Score</span>
+      <span class="tutor-stat-value" data-tutor-target="score">0</span>
+    </div>
+    <div class="tutor-stat">
+      <span class="tutor-stat-label">Streak</span>
+      <span class="tutor-stat-value" data-tutor-target="streak">0</span>
+    </div>
+  </section>
+</div>

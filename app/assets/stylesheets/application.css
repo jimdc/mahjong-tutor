@@ -1,10 +1,190 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Space+Grotesk:wght@400;600&display=swap");
+
+:root {
+  --ink: #141321;
+  --muted: #4c4a66;
+  --bg: #f6f1e8;
+  --accent: #d25f45;
+  --accent-deep: #7b2d1c;
+  --card: #fffaf3;
+  --shadow: 0 22px 50px rgba(32, 19, 12, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", "Avenir Next", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at top, #fff5df 0%, var(--bg) 55%, #e9ded2 100%);
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: "Fraunces", "Georgia", serif;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+}
+
+.tutor {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 4rem;
+}
+
+.tutor-header {
+  margin-bottom: 2.5rem;
+}
+
+.tutor-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--accent-deep);
+  margin: 0 0 0.5rem;
+}
+
+.tutor-subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 560px;
+}
+
+.tutor-card {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(123, 45, 28, 0.08);
+}
+
+.tutor-tile {
+  font-family: "Fraunces", "Georgia", serif;
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 2.2rem 1.5rem;
+  border-radius: 18px;
+  border: 2px solid rgba(123, 45, 28, 0.18);
+  background: linear-gradient(145deg, #fff9ef, #f6e7d5);
+  margin-bottom: 2rem;
+}
+
+.tutor-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+}
+
+.tutor-option {
+  border: 1px solid rgba(123, 45, 28, 0.2);
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  border-radius: 14px;
+  background: #fffdf9;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tutor-option:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(123, 45, 28, 0.15);
+}
+
+.tutor-option:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.tutor-option.correct {
+  border-color: #1d7f4b;
+  background: #e8f6ee;
+}
+
+.tutor-option.wrong {
+  border-color: #b13b25;
+  background: #fde7e2;
+}
+
+.tutor-feedback {
+  margin-top: 1.5rem;
+  min-height: 1.5rem;
+  font-weight: 600;
+}
+
+.tutor-feedback[data-state="correct"] {
+  color: #1d7f4b;
+}
+
+.tutor-feedback[data-state="wrong"] {
+  color: #b13b25;
+}
+
+.tutor-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tutor-next {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tutor-next:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tutor-next:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(210, 95, 69, 0.35);
+}
+
+.tutor-stats {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.tutor-stat {
+  background: #fffdf8;
+  border-radius: 18px;
+  padding: 1.2rem 1.5rem;
+  border: 1px solid rgba(123, 45, 28, 0.08);
+}
+
+.tutor-stat-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.tutor-stat-value {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .tutor-card {
+    padding: 1.75rem;
+  }
+
+  .tutor-actions {
+    justify-content: center;
+  }
+}
