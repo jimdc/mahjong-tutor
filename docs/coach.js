@@ -245,10 +245,20 @@ const handleChoice = tile => {
     elements.tip.textContent = "Try to keep tiles that form sequences or pairs."
   }
 
-  elements.next.disabled = false
-  elements.choices.querySelectorAll("button").forEach(button => {
-    button.disabled = true
-  })
+  if (correct) {
+    elements.next.disabled = false
+    elements.choices.querySelectorAll("button").forEach(button => {
+      button.disabled = true
+    })
+  } else {
+    // keep other options available so the player can try again
+    elements.choices.querySelectorAll("button").forEach(button => {
+      if (button.textContent === tile) {
+        button.disabled = true
+        button.classList.add("wrong")
+      }
+    })
+  }
 }
 
 const nextScenario = () => {
