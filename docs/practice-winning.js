@@ -1,6 +1,7 @@
 const HANDS = [
   {
     label: "Standard Hand (4 melds + pair)",
+    why: "This example shows completed sets plus a pair, the classic winning structure.",
     tiles: [
       "tiles/MJ2bing.svg", "tiles/MJ3bing.svg", "tiles/MJ4bing.svg",
       "tiles/MJ5tiao.svg", "tiles/MJ6tiao.svg", "tiles/MJ7tiao.svg",
@@ -10,6 +11,7 @@ const HANDS = [
   },
   {
     label: "All Pungs",
+    why: "Every set is a triplet (pung), plus a pair.",
     tiles: [
       "tiles/MJ2tiao.svg", "tiles/MJ2tiao.svg", "tiles/MJ2tiao.svg",
       "tiles/MJ6wan.svg", "tiles/MJ6wan.svg", "tiles/MJ6wan.svg",
@@ -18,6 +20,7 @@ const HANDS = [
   },
   {
     label: "Seven Pairs",
+    why: "The hand is made entirely of pairs rather than melds.",
     tiles: [
       "tiles/MJ1bing.svg", "tiles/MJ1bing.svg",
       "tiles/MJ3wan.svg", "tiles/MJ3wan.svg",
@@ -27,6 +30,7 @@ const HANDS = [
   },
   {
     label: "Pure Suit",
+    why: "All tiles shown are from a single suit.",
     tiles: [
       "tiles/MJ2bing.svg", "tiles/MJ3bing.svg", "tiles/MJ4bing.svg",
       "tiles/MJ5bing.svg", "tiles/MJ6bing.svg", "tiles/MJ7bing.svg"
@@ -100,7 +104,7 @@ const renderHand = () => {
 
 const handleChoice = option => {
   const correct = option === current.label
-  elements.feedback.textContent = correct ? "Correct!" : `Not quite. This is ${current.label}.`
+  elements.feedback.textContent = correct ? `Correct! ${current.why}` : `Not quite. This is ${current.label}. ${current.why}`
   elements.feedback.dataset.state = correct ? "correct" : "wrong"
   stats.record(correct)
   elements.next.disabled = false
