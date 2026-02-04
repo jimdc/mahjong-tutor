@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mahjong Tutor - Practice</title>
+    <title>Mahjong Tutor - Honors Practice</title>
     <link rel="stylesheet" href="styles.css?v=20260203" />
   </head>
   <body>
@@ -20,30 +20,24 @@
 
       <header class="tutor-header">
         <p class="tutor-kicker">Practice</p>
-        <h1>Concept Drills</h1>
-        <p class="tutor-subtitle">Short, focused exercises to reinforce key Mahjong ideas.</p>
+        <h1>Honor Tiles Drill</h1>
+        <p class="tutor-subtitle">Identify winds and dragons quickly.</p>
       </header>
 
       <section class="tutor-card">
-        <div class="glossary-grid">
-          <a class="practice-card" href="practice-winds.html">
-            <h3>Winds (East/South/West/North)</h3>
-            <p>Quick recognition drill for directional honor tiles.</p>
-          </a>
-          <a class="practice-card" href="practice-honors.html">
-            <h3>Honor Tiles (Winds + Dragons)</h3>
-            <p>Mix winds and dragons for fast recognition.</p>
-          </a>
-          <a class="practice-card" href="practice-melds.html">
-            <h3>Meld Types (Chow/Pung/Kong/Pair)</h3>
-            <p>Identify the meld from a set of tiles.</p>
-          </a>
-          <a class="practice-card" href="practice-winning.html">
-            <h3>Winning Hand Types</h3>
-            <p>Recognize common winning hand shapes.</p>
-          </a>
+        <div class="tutor-tile" id="honorTile">
+          <img class="tutor-tile-image" id="honorImage" alt="" />
+          <span class="tutor-tile-glyph" id="honorGlyph">Loading...</span>
+        </div>
+        <div class="tutor-options" id="honorOptions"></div>
+        <p class="tutor-feedback" id="honorFeedback"></p>
+        <div class="tutor-actions">
+          <button class="tutor-next" id="honorNext" type="button">Next honor</button>
         </div>
       </section>
     </div>
+
+    <script src="tile_labels.js?v=20260203"></script>
+    <script src="practice-honors.js?v=20260203"></script>
   </body>
 </html>
