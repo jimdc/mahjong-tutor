@@ -792,3 +792,48 @@ h1 {
   color: var(--accent-deep);
   font-weight: 600;
 }
+
+.practice-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.2rem 1.4rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #fff7eb, #f7e6d1);
+  border: 1px solid rgba(123, 45, 28, 0.12);
+  margin-bottom: 1rem;
+}
+
+.practice-hero__text h2 {
+  margin: 0 0 0.3rem;
+  font-family: "Fraunces", "Georgia", serif;
+}
+
+.practice-hero__text p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.practice-hero__tiles {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.practice-hero__tiles img {
+  width: 48px;
+  height: 68px;
+  object-fit: contain;
+}
+
+.practice-hero--mini {
+  padding: 0.9rem 1.1rem;
+}
+
+@media (max-width: 700px) {
+  .practice-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
