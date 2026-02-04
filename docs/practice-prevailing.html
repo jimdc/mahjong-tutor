@@ -27,11 +27,11 @@
       <section class="tutor-card">
         <div class="glossary-section">
           <h2>Round Progression (Visual)</h2>
-          <div class="round-track">
-            <span class="round-chip is-active">East Round</span>
-            <span class="round-chip">South Round</span>
-            <span class="round-chip">West Round</span>
-            <span class="round-chip">North Round</span>
+          <div class="round-track" id="roundTrack">
+            <span class="round-chip is-active" data-round="0">East Round</span>
+            <span class="round-chip" data-round="1">South Round</span>
+            <span class="round-chip" data-round="2">West Round</span>
+            <span class="round-chip" data-round="3">North Round</span>
           </div>
           <p class="glossary-note">In many rule sets, the prevailing wind advances after all four seats have been East.</p>
         </div>
@@ -43,9 +43,24 @@
         <div class="tutor-actions">
           <button class="tutor-next" id="prevNext" type="button">Next question</button>
         </div>
+        <div class="practice-stats">
+          <div class="practice-stat">
+            <span class="practice-stat__label">Correct</span>
+            <span class="practice-stat__value" id="statCorrect">0</span>
+          </div>
+          <div class="practice-stat">
+            <span class="practice-stat__label">Attempts</span>
+            <span class="practice-stat__value" id="statAttempts">0</span>
+          </div>
+          <div class="practice-stat">
+            <span class="practice-stat__label">Streak</span>
+            <span class="practice-stat__value" id="statStreak">0</span>
+          </div>
+        </div>
       </section>
     </div>
 
+    <script src="practice-stats.js?v=20260203"></script>
     <script src="practice-prevailing.js?v=20260203"></script>
   </body>
 </html>

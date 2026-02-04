@@ -44,7 +44,7 @@ const SCENARIOS = [
       { label: "Partial (Run)", tiles: ["2 Character", "3 Character", "4 Character"] },
       { label: "Partial (Run)", tiles: ["7 Bamboo", "8 Bamboo"] },
       { label: "Pair (将/对子 jiàng/duìzi)", tiles: ["East Wind", "East Wind"] },
-      { label: "Singles", tiles: ["4 Dot", "Red Dragon", "9 Bamboo"] }
+      { label: "Singles", tiles: ["4 Dot", "Red Dragon", "9 Bamboo"], hint: true }
     ],
     bestDiscard: "9 Bamboo",
     reason: "It is isolated. Keeping 7-8 Bamboo creates a potential 6-7-8 or 7-8-9 chow, but only if you see 6 or 9 Bamboo later.",
@@ -65,7 +65,7 @@ const SCENARIOS = [
       { label: "Meld (Chow / 吃 chī)", tiles: ["5 Bamboo", "6 Bamboo", "7 Bamboo"] },
       { label: "Partial (Run)", tiles: ["3 Character", "4 Character", "5 Character"] },
       { label: "Pair (将/对子 jiàng/duìzi)", tiles: ["White Dragon", "White Dragon"] },
-      { label: "Singles", tiles: ["9 Dot", "1 Character"] }
+      { label: "Singles", tiles: ["9 Dot", "1 Character"], hint: true }
     ],
     bestDiscard: "1 Character",
     reason: "It does not extend any existing run and does not make a pair. You already have a pair in White Dragons.",
@@ -86,7 +86,7 @@ const SCENARIOS = [
       { label: "Meld (Chow / 吃 chī)", tiles: ["6 Bamboo", "7 Bamboo", "8 Bamboo"] },
       { label: "Partial (Run)", tiles: ["4 Character", "5 Character", "6 Character"] },
       { label: "Pair (将/对子 jiàng/duìzi)", tiles: ["Green Dragon", "Green Dragon"] },
-      { label: "Singles", tiles: ["9 Bamboo", "1 Dot"] }
+      { label: "Singles", tiles: ["9 Bamboo", "1 Dot"], hint: true }
     ],
     bestDiscard: "1 Dot",
     reason: "The 1 Dot is isolated. The Green Dragon pair is valuable and can become a scoring pung.",
@@ -112,13 +112,16 @@ const elements = {
   tip: document.getElementById("coachTip"),
   next: document.getElementById("coachNext"),
   viewGrouped: document.getElementById("coachViewGrouped"),
-  viewRaw: document.getElementById("coachViewRaw")
+  viewRaw: document.getElementById("coachViewRaw"),
+  hint: document.getElementById("coachHint"),
+  hintText: document.getElementById("coachHintText")
 }
 
 let scenarios = shuffle(SCENARIOS)
 let index = 0
 let current = null
 let groupedView = true
+let hintShown = false
 
 const buildTileNode = label => {
   const meta = tileMeta(label)
@@ -154,6 +157,9 @@ const renderGroups = () => {
   current.groups.forEach(group => {
     const groupEl = document.createElement("div")
     groupEl.className = "coach-group"
+    if (hintShown && group.hint) {
+      groupEl.classList.add("is-hint")
+    }
 
     const label = document.createElement("span")
     label.className = "coach-group__label"
@@ -226,6 +232,8 @@ const loadScenario = () => {
   elements.explain.textContent = "Choose the best discard from this 13-tile hand."
   elements.feedback.textContent = ""
   elements.tip.textContent = ""
+  elements.hintText.textContent = ""
+  hintShown = false
   elements.next.disabled = true
 
   renderHand()
@@ -280,6 +288,14 @@ if (elements.viewGrouped) {
 if (elements.viewRaw) {
   elements.viewRaw.addEventListener("click", () => {
     groupedView = false
+    renderHand()
+  })
+}
+
+if (elements.hint) {
+  elements.hint.addEventListener("click", () => {
+    hintShown = true
+    elements.hintText.textContent = "Hint: focus on the Singles group — isolated tiles are often the best discard."
     renderHand()
   })
 }

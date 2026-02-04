@@ -37,7 +37,25 @@ const elements = {
   prompt: document.getElementById("prevPrompt"),
   options: document.getElementById("prevOptions"),
   feedback: document.getElementById("prevFeedback"),
-  next: document.getElementById("prevNext")
+  next: document.getElementById("prevNext"),
+  statCorrect: document.getElementById("statCorrect"),
+  statAttempts: document.getElementById("statAttempts"),
+  statStreak: document.getElementById("statStreak"),
+  roundTrack: document.getElementById("roundTrack")
+}
+
+const stats = createPracticeStats("practice-prevailing", {
+  correct: elements.statCorrect,
+  attempts: elements.statAttempts,
+  streak: elements.statStreak
+})
+
+let roundIndex = 0
+const updateRoundTrack = () => {
+  if (!elements.roundTrack) return
+  elements.roundTrack.querySelectorAll(".round-chip").forEach(chip => {
+    chip.classList.toggle("is-active", Number(chip.dataset.round) === roundIndex)
+  })
 }
 
 let current = null
@@ -63,6 +81,11 @@ const handleChoice = option => {
   const correct = option === current.answer
   elements.feedback.textContent = correct ? "Correct!" : `Not quite. The answer is ${current.answer}.`
   elements.feedback.dataset.state = correct ? "correct" : "wrong"
+  stats.record(correct)
+  if (correct) {
+    roundIndex = (roundIndex + 1) % 4
+    updateRoundTrack()
+  }
   elements.next.disabled = false
   elements.options.querySelectorAll("button").forEach(button => {
     button.disabled = true
@@ -79,3 +102,4 @@ if (elements.next) {
 }
 
 renderQuestion()
+updateRoundTrack()

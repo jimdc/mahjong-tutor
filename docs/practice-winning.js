@@ -54,8 +54,17 @@ const elements = {
   tiles: document.getElementById("winTiles"),
   options: document.getElementById("winOptions"),
   feedback: document.getElementById("winFeedback"),
-  next: document.getElementById("winNext")
+  next: document.getElementById("winNext"),
+  statCorrect: document.getElementById("statCorrect"),
+  statAttempts: document.getElementById("statAttempts"),
+  statStreak: document.getElementById("statStreak")
 }
+
+const stats = createPracticeStats("practice-winning", {
+  correct: elements.statCorrect,
+  attempts: elements.statAttempts,
+  streak: elements.statStreak
+})
 
 let current = null
 
@@ -87,6 +96,7 @@ const handleChoice = option => {
   const correct = option === current.label
   elements.feedback.textContent = correct ? "Correct!" : `Not quite. This is ${current.label}.`
   elements.feedback.dataset.state = correct ? "correct" : "wrong"
+  stats.record(correct)
   elements.next.disabled = false
   elements.options.querySelectorAll("button").forEach(button => {
     button.disabled = true

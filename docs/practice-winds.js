@@ -20,8 +20,17 @@ const elements = {
   glyph: document.getElementById("windGlyph"),
   options: document.getElementById("windOptions"),
   feedback: document.getElementById("windFeedback"),
-  next: document.getElementById("windNext")
+  next: document.getElementById("windNext"),
+  statCorrect: document.getElementById("statCorrect"),
+  statAttempts: document.getElementById("statAttempts"),
+  statStreak: document.getElementById("statStreak")
 }
+
+const stats = createPracticeStats("practice-winds", {
+  correct: elements.statCorrect,
+  attempts: elements.statAttempts,
+  streak: elements.statStreak
+})
 
 let current = null
 let choices = []
@@ -60,6 +69,7 @@ const handleChoice = choice => {
   const correct = choice.id === current.id
   elements.feedback.textContent = correct ? "Correct!" : `Not quite. This is ${current.label}.`
   elements.feedback.dataset.state = correct ? "correct" : "wrong"
+  stats.record(correct)
   elements.next.disabled = false
   elements.options.querySelectorAll("button").forEach(button => {
     button.disabled = true

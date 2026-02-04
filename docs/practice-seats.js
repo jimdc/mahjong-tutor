@@ -44,8 +44,17 @@ const elements = {
   prompt: document.getElementById("seatPrompt"),
   options: document.getElementById("seatOptions"),
   feedback: document.getElementById("seatFeedback"),
-  next: document.getElementById("seatNext")
+  next: document.getElementById("seatNext"),
+  statCorrect: document.getElementById("statCorrect"),
+  statAttempts: document.getElementById("statAttempts"),
+  statStreak: document.getElementById("statStreak")
 }
+
+const stats = createPracticeStats("practice-seats", {
+  correct: elements.statCorrect,
+  attempts: elements.statAttempts,
+  streak: elements.statStreak
+})
 
 let current = null
 
@@ -70,6 +79,7 @@ const handleChoice = option => {
   const correct = option === current.answer
   elements.feedback.textContent = correct ? "Correct!" : `Not quite. The answer is ${current.answer}.`
   elements.feedback.dataset.state = correct ? "correct" : "wrong"
+  stats.record(correct)
   elements.next.disabled = false
   elements.options.querySelectorAll("button").forEach(button => {
     button.disabled = true

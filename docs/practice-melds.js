@@ -42,8 +42,17 @@ const elements = {
   tiles: document.getElementById("meldTiles"),
   options: document.getElementById("meldOptions"),
   feedback: document.getElementById("meldFeedback"),
-  next: document.getElementById("meldNext")
+  next: document.getElementById("meldNext"),
+  statCorrect: document.getElementById("statCorrect"),
+  statAttempts: document.getElementById("statAttempts"),
+  statStreak: document.getElementById("statStreak")
 }
+
+const stats = createPracticeStats("practice-melds", {
+  correct: elements.statCorrect,
+  attempts: elements.statAttempts,
+  streak: elements.statStreak
+})
 
 let current = null
 
@@ -75,6 +84,7 @@ const handleChoice = option => {
   const correct = option === current.answer
   elements.feedback.textContent = correct ? "Correct!" : `Not quite. This is ${current.answer}.`
   elements.feedback.dataset.state = correct ? "correct" : "wrong"
+  stats.record(correct)
   elements.next.disabled = false
   elements.options.querySelectorAll("button").forEach(button => {
     button.disabled = true
