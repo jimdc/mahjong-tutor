@@ -48,7 +48,11 @@ const SCENARIOS = [
     ],
     bestDiscard: "9 Bamboo",
     reason: "It is isolated. Keeping 7-8 Bamboo creates a potential 6-7-8 or 7-8-9 chow, but only if you see 6 or 9 Bamboo later.",
-    tip: "Look for tiles that do not connect to a sequence or pair."
+    tip: "Look for tiles that do not connect to a sequence or pair.",
+    whySteps: [
+      "Rule: keep tiles that can still grow into a sequence or pair.",
+      "9 Bamboo is isolated; 7-8 Bamboo can still become 6-7-8 or 7-8-9."
+    ]
   },
   {
     id: "pair-up",
@@ -69,7 +73,11 @@ const SCENARIOS = [
     ],
     bestDiscard: "1 Character",
     reason: "It does not extend any existing run and does not make a pair. You already have a pair in White Dragons.",
-    tip: "Once you have a pair, focus on clean melds."
+    tip: "Once you have a pair, focus on clean melds.",
+    whySteps: [
+      "Rule: once you secure a pair, prioritize completing melds.",
+      "1 Character is isolated and does not help any run; White Dragons already form the pair."
+    ]
   },
   {
     id: "honor-keep",
@@ -90,7 +98,11 @@ const SCENARIOS = [
     ],
     bestDiscard: "1 Dot",
     reason: "The 1 Dot is isolated. The Green Dragon pair is valuable and can become a scoring pung.",
-    tip: "Pairs of dragons or winds are often worth keeping."
+    tip: "Pairs of dragons or winds are often worth keeping.",
+    whySteps: [
+      "Rule: honor pairs (dragons/winds) are often valuable; protect them.",
+      "1 Dot is isolated while Green Dragons can become a scoring pung."
+    ]
   }
 ]
 
@@ -114,7 +126,9 @@ const elements = {
   viewGrouped: document.getElementById("coachViewGrouped"),
   viewRaw: document.getElementById("coachViewRaw"),
   hint: document.getElementById("coachHint"),
-  hintText: document.getElementById("coachHintText")
+  hintText: document.getElementById("coachHintText"),
+  why: document.getElementById("coachWhy"),
+  whyList: document.getElementById("coachWhyList")
 }
 
 let scenarios = shuffle(SCENARIOS)
@@ -122,6 +136,7 @@ let index = 0
 let current = null
 let groupedView = true
 let hintShown = false
+let whyIndex = 0
 
 const buildTileNode = label => {
   const meta = tileMeta(label)
@@ -233,6 +248,9 @@ const loadScenario = () => {
   elements.feedback.textContent = ""
   elements.tip.textContent = ""
   elements.hintText.textContent = ""
+  whyIndex = 0
+  if (elements.whyList) elements.whyList.innerHTML = ""
+  if (elements.why) elements.why.disabled = true
   hintShown = false
   elements.next.disabled = true
 
@@ -265,6 +283,20 @@ const handleChoice = (tile, buttonEl) => {
       buttonEl.classList.add("wrong")
     }
   }
+
+  if (elements.why) elements.why.disabled = false
+}
+
+const revealWhy = () => {
+  if (!current || !current.whySteps || !elements.whyList) return
+  if (whyIndex >= current.whySteps.length) return
+  const li = document.createElement("li")
+  li.textContent = current.whySteps[whyIndex]
+  elements.whyList.appendChild(li)
+  whyIndex += 1
+  if (elements.why && whyIndex >= current.whySteps.length) {
+    elements.why.disabled = true
+  }
 }
 
 const nextScenario = () => {
@@ -296,6 +328,10 @@ if (elements.hint) {
     elements.hintText.textContent = "Hint: focus on the Singles group — isolated tiles are often the best discard."
     renderHand()
   })
+}
+
+if (elements.why) {
+  elements.why.addEventListener("click", revealWhy)
 }
 
 loadScenario()

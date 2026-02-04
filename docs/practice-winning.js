@@ -1,7 +1,10 @@
 const HANDS = [
   {
     label: "Standard Hand (4 melds + pair)",
-    why: "This example shows completed sets plus a pair, the classic winning structure.",
+    whySteps: [
+      "Rule: a standard win is four melds plus one pair.",
+      "This hand shows completed sets and a pair."
+    ],
     tiles: [
       "tiles/MJ2bing.svg", "tiles/MJ3bing.svg", "tiles/MJ4bing.svg",
       "tiles/MJ5tiao.svg", "tiles/MJ6tiao.svg", "tiles/MJ7tiao.svg",
@@ -11,7 +14,10 @@ const HANDS = [
   },
   {
     label: "All Pungs",
-    why: "Every set is a triplet (pung), plus a pair.",
+    whySteps: [
+      "Rule: an All Pungs hand uses only triplets plus a pair.",
+      "Every set here is a matching triplet."
+    ],
     tiles: [
       "tiles/MJ2tiao.svg", "tiles/MJ2tiao.svg", "tiles/MJ2tiao.svg",
       "tiles/MJ6wan.svg", "tiles/MJ6wan.svg", "tiles/MJ6wan.svg",
@@ -20,7 +26,10 @@ const HANDS = [
   },
   {
     label: "Seven Pairs",
-    why: "The hand is made entirely of pairs rather than melds.",
+    whySteps: [
+      "Rule: Seven Pairs uses only pairs.",
+      "All tiles are arranged as pairs."
+    ],
     tiles: [
       "tiles/MJ1bing.svg", "tiles/MJ1bing.svg",
       "tiles/MJ3wan.svg", "tiles/MJ3wan.svg",
@@ -30,7 +39,10 @@ const HANDS = [
   },
   {
     label: "Pure Suit",
-    why: "All tiles shown are from a single suit.",
+    whySteps: [
+      "Rule: a Pure Suit hand uses one suit only.",
+      "Every tile shown is a Dot tile."
+    ],
     tiles: [
       "tiles/MJ2bing.svg", "tiles/MJ3bing.svg", "tiles/MJ4bing.svg",
       "tiles/MJ5bing.svg", "tiles/MJ6bing.svg", "tiles/MJ7bing.svg"
@@ -58,6 +70,8 @@ const elements = {
   tiles: document.getElementById("winTiles"),
   options: document.getElementById("winOptions"),
   feedback: document.getElementById("winFeedback"),
+  why: document.getElementById("winWhy"),
+  whyList: document.getElementById("winWhyList"),
   next: document.getElementById("winNext"),
   statCorrect: document.getElementById("statCorrect"),
   statAttempts: document.getElementById("statAttempts"),
@@ -72,6 +86,7 @@ const stats = createPracticeStats("practice-winning", {
 
 let current = null
 let lastLabel = null
+let whyIndex = 0
 
 const renderHand = () => {
   let next = HANDS[Math.floor(Math.random() * HANDS.length)]
@@ -82,6 +97,9 @@ const renderHand = () => {
   lastLabel = current.label
   elements.tiles.innerHTML = ""
   elements.feedback.textContent = ""
+  if (elements.whyList) elements.whyList.innerHTML = ""
+  if (elements.why) elements.why.disabled = true
+  whyIndex = 0
   elements.next.disabled = true
 
   current.tiles.forEach(src => {
@@ -104,10 +122,11 @@ const renderHand = () => {
 
 const handleChoice = option => {
   const correct = option === current.label
-  elements.feedback.textContent = correct ? `Correct! ${current.why}` : `Not quite. This is ${current.label}. ${current.why}`
+  elements.feedback.textContent = correct ? `Correct! This is ${current.label}.` : `Not quite. This is ${current.label}.`
   elements.feedback.dataset.state = correct ? "correct" : "wrong"
   stats.record(correct)
   elements.next.disabled = false
+  if (elements.why) elements.why.disabled = false
   elements.options.querySelectorAll("button").forEach(button => {
     button.disabled = true
     if (button.textContent === current.label) {
@@ -118,8 +137,24 @@ const handleChoice = option => {
   })
 }
 
+const revealWhy = () => {
+  if (!current || !current.whySteps || !elements.whyList) return
+  if (whyIndex >= current.whySteps.length) return
+  const li = document.createElement("li")
+  li.textContent = current.whySteps[whyIndex]
+  elements.whyList.appendChild(li)
+  whyIndex += 1
+  if (elements.why && whyIndex >= current.whySteps.length) {
+    elements.why.disabled = true
+  }
+}
+
 if (elements.next) {
   elements.next.addEventListener("click", renderHand)
+}
+
+if (elements.why) {
+  elements.why.addEventListener("click", revealWhy)
 }
 
 renderHand()

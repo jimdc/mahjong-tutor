@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mahjong Tutor - Story Mode</title>
+    <link rel="stylesheet" href="styles.css?v=20260204-2" />
+  </head>
+  <body>
+    <div class="tutor">
+      <nav class="learning-nav">
+        <a class="learning-nav__link" href="story.html">Story Mode</a>
+        <a class="learning-nav__link" href="index.html">1. Tile Quiz</a>
+        <a class="learning-nav__link" href="coach.html">2. Hand Coach</a>
+        <a class="learning-nav__link" href="practice.html">3. Practice</a>
+        <a class="learning-nav__link" href="glossary.html">4. Glossary</a>
+        <a class="learning-nav__link" href="rules.html">5. Rules</a>
+        <a class="learning-nav__link" href="win.html">6. Winning</a>
+        <a class="learning-nav__link" href="history.html">7. History</a>
+      </nav>
+
+      <header class="tutor-header">
+        <p class="tutor-kicker">Story Mode</p>
+        <h1>The Mentor’s Primer</h1>
+        <p class="tutor-subtitle">A guided path that responds to your progress, step by step.</p>
+      </header>
+
+      <section class="tutor-card">
+        <div class="story-progress" id="storyProgress"></div>
+        <h2 id="storyTitle"></h2>
+        <p class="mentor-line" id="storyMentor"></p>
+        <p id="storyText"></p>
+        <div class="story-actions">
+          <a class="tutor-option" id="storyAction" href="#">Go to lesson</a>
+          <button class="tutor-next" id="storyNext" type="button">Continue</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="story.js?v=20260204-2"></script>
+    <script src="next-up.js?v=20260204-2"></script>
+  </body>
+</html>

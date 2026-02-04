@@ -33,28 +33,40 @@ const SCENARIOS = [
     pool: ["7 Dot", "7 Dot", "7 Dot", "7 Dot", "1 Bamboo", "Red Dragon"],
     options: ["7 Dot", "3 Bamboo", "White Dragon", "2 Character"],
     answer: "7 Dot",
-    why: "All four 7 Dots are visible, so no one can win off another 7 Dot."
+    whySteps: [
+      "Rule: if all four copies of a tile are visible, it is safe to discard.",
+      "All four 7 Dots are visible, so no one can win on a 7 Dot."
+    ]
   },
   {
     id: "safe-white",
     pool: ["White Dragon", "White Dragon", "White Dragon", "White Dragon", "6 Bamboo", "3 Dot"],
     options: ["White Dragon", "6 Bamboo", "9 Dot", "South Wind"],
     answer: "White Dragon",
-    why: "Every White Dragon is out already, making the last copy safe."
+    whySteps: [
+      "Rule: a tile with all four copies visible is safe.",
+      "All White Dragons are already visible, so it is safe."
+    ]
   },
   {
     id: "safe-3-bamboo",
     pool: ["3 Bamboo", "3 Bamboo", "3 Bamboo", "3 Bamboo", "9 Character", "East Wind"],
     options: ["3 Bamboo", "5 Dot", "9 Character", "Green Dragon"],
     answer: "3 Bamboo",
-    why: "All four 3 Bamboos are visible, so discarding one cannot complete a hand."
+    whySteps: [
+      "Rule: a tile is safe if all four copies are visible.",
+      "All four 3 Bamboos are visible, so it cannot complete a hand."
+    ]
   },
   {
     id: "safe-9-character",
     pool: ["9 Character", "9 Character", "9 Character", "9 Character", "2 Dot", "8 Bamboo"],
     options: ["9 Character", "2 Dot", "8 Bamboo", "North Wind"],
     answer: "9 Character",
-    why: "The 9 Characters are exhausted, so they are the safest choice."
+    whySteps: [
+      "Rule: exhausted tiles are safe to discard.",
+      "All 9 Characters are already out, so they are safest."
+    ]
   }
 ]
 
@@ -71,6 +83,8 @@ const elements = {
   pool: document.getElementById("safetyPool"),
   options: document.getElementById("safetyOptions"),
   feedback: document.getElementById("safetyFeedback"),
+  why: document.getElementById("safetyWhy"),
+  whyList: document.getElementById("safetyWhyList"),
   next: document.getElementById("safetyNext"),
   statCorrect: document.getElementById("statCorrect"),
   statAttempts: document.getElementById("statAttempts"),
@@ -85,6 +99,7 @@ const stats = createPracticeStats("practice-safety", {
 
 let current = null
 let lastId = null
+let whyIndex = 0
 
 const buildTileNode = label => {
   const meta = tileMeta(label)
@@ -103,6 +118,9 @@ const renderScenario = () => {
   lastId = current.id
 
   elements.feedback.textContent = ""
+  if (elements.whyList) elements.whyList.innerHTML = ""
+  if (elements.why) elements.why.disabled = true
+  whyIndex = 0
   elements.next.disabled = true
 
   elements.pool.innerHTML = ""
@@ -143,10 +161,11 @@ const renderScenario = () => {
 
 const handleChoice = option => {
   const correct = option === current.answer
-  elements.feedback.textContent = correct ? `Correct! ${current.why}` : `Not quite. ${current.why}`
+  elements.feedback.textContent = correct ? "Correct!" : "Not quite."
   elements.feedback.dataset.state = correct ? "correct" : "wrong"
   stats.record(correct)
   elements.next.disabled = false
+  if (elements.why) elements.why.disabled = false
   elements.options.querySelectorAll("button").forEach(button => {
     button.disabled = true
     if (button.dataset.label === current.answer) {
@@ -157,8 +176,24 @@ const handleChoice = option => {
   })
 }
 
+const revealWhy = () => {
+  if (!current || !current.whySteps || !elements.whyList) return
+  if (whyIndex >= current.whySteps.length) return
+  const li = document.createElement("li")
+  li.textContent = current.whySteps[whyIndex]
+  elements.whyList.appendChild(li)
+  whyIndex += 1
+  if (elements.why && whyIndex >= current.whySteps.length) {
+    elements.why.disabled = true
+  }
+}
+
 if (elements.next) {
   elements.next.addEventListener("click", renderScenario)
+}
+
+if (elements.why) {
+  elements.why.addEventListener("click", revealWhy)
 }
 
 renderScenario()

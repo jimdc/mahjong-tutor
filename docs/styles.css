@@ -129,6 +129,53 @@ h1 {
   background: #fff2e1;
 }
 
+.mentor-line {
+  margin: 0.4rem 0 0.8rem;
+  color: var(--accent-deep);
+  font-weight: 600;
+}
+
+.next-up {
+  margin-top: 1.5rem;
+}
+
+.story-progress {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.story-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.2rem;
+}
+
+.why-panel {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.why-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.why-list li {
+  padding: 0.5rem 0.7rem;
+  border-radius: 10px;
+  background: #fffdf9;
+  border: 1px dashed rgba(123, 45, 28, 0.18);
+  color: var(--muted);
+}
+
 .tutor-tile {
   font-family: "Noto Sans Symbols 2", "Segoe UI Symbol", "Apple Symbols", "Noto Color Emoji", "Fraunces", "Georgia", serif;
   font-size: clamp(3.2rem, 8vw, 5rem);

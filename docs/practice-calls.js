@@ -40,7 +40,10 @@ const SCENARIOS = [
       "1 Dot", "9 Bamboo", "2 Character"
     ],
     answer: "Chow",
-    why: "You have 4-6 Bamboo, so the discard completes a chow. Only the next player can chow."
+    whySteps: [
+      "Rule: only the next player may chow; you need two consecutive tiles to complete it.",
+      "You hold 4 and 6 Bamboo, so the 5 Bamboo discard completes a chow."
+    ]
   },
   {
     id: "pung-any",
@@ -54,7 +57,10 @@ const SCENARIOS = [
       "North Wind", "9 Dot"
     ],
     answer: "Pung",
-    why: "Two matching tiles plus the discard form a pung, and any player may claim it."
+    whySteps: [
+      "Rule: any player can claim a pung with a matching pair.",
+      "You already have two Red Dragons, so the discard makes a pung."
+    ]
   },
   {
     id: "kong",
@@ -67,7 +73,10 @@ const SCENARIOS = [
       "South Wind", "South Wind", "9 Bamboo", "1 Dot"
     ],
     answer: "Kong",
-    why: "You have three 2 Dots, so the discard makes a kong."
+    whySteps: [
+      "Rule: a kong is four identical tiles.",
+      "You already have three 2 Dots, so the discard completes the kong."
+    ]
   },
   {
     id: "win",
@@ -81,7 +90,10 @@ const SCENARIOS = [
       "1 Character", "2 Character"
     ],
     answer: "Win",
-    why: "The discard completes your final chow, giving you four melds plus a pair."
+    whySteps: [
+      "Rule: winning on a discard takes priority over other calls.",
+      "The 3 Character completes your final chow, giving four melds plus a pair."
+    ]
   },
   {
     id: "pass",
@@ -95,7 +107,10 @@ const SCENARIOS = [
       "1 Dot", "3 Bamboo", "5 Character"
     ],
     answer: "Pass",
-    why: "You are not next, so you cannot chow, and you do not have a pair for pung/kong."
+    whySteps: [
+      "Rule: only the next player can chow; pung/kong needs a pair or triplet.",
+      "You are not next and lack a pair for a pung or kong, so you must pass."
+    ]
   }
 ]
 
@@ -116,6 +131,8 @@ const elements = {
   hand: document.getElementById("callHand"),
   options: document.getElementById("callOptions"),
   feedback: document.getElementById("callFeedback"),
+  why: document.getElementById("callWhy"),
+  whyList: document.getElementById("callWhyList"),
   next: document.getElementById("callNext"),
   statCorrect: document.getElementById("statCorrect"),
   statAttempts: document.getElementById("statAttempts"),
@@ -130,6 +147,7 @@ const stats = createPracticeStats("practice-calls", {
 
 let current = null
 let lastId = null
+let whyIndex = 0
 
 const buildTileNode = label => {
   const meta = tileMeta(label)
@@ -170,6 +188,9 @@ const renderScenario = () => {
 
   elements.prompt.textContent = current.prompt
   elements.feedback.textContent = ""
+  if (elements.whyList) elements.whyList.innerHTML = ""
+  if (elements.why) elements.why.disabled = true
+  whyIndex = 0
   elements.next.disabled = true
 
   elements.discard.innerHTML = ""
@@ -191,10 +212,11 @@ const renderScenario = () => {
 
 const handleChoice = option => {
   const correct = option === current.answer
-  elements.feedback.textContent = correct ? `Correct! ${current.why}` : `Not quite. ${current.why}`
+  elements.feedback.textContent = correct ? "Correct!" : "Not quite."
   elements.feedback.dataset.state = correct ? "correct" : "wrong"
   stats.record(correct)
   elements.next.disabled = false
+  if (elements.why) elements.why.disabled = false
   elements.options.querySelectorAll("button").forEach(button => {
     button.disabled = true
     if (button.textContent === current.answer) {
@@ -205,8 +227,24 @@ const handleChoice = option => {
   })
 }
 
+const revealWhy = () => {
+  if (!current || !current.whySteps || !elements.whyList) return
+  if (whyIndex >= current.whySteps.length) return
+  const li = document.createElement("li")
+  li.textContent = current.whySteps[whyIndex]
+  elements.whyList.appendChild(li)
+  whyIndex += 1
+  if (elements.why && whyIndex >= current.whySteps.length) {
+    elements.why.disabled = true
+  }
+}
+
 if (elements.next) {
   elements.next.addEventListener("click", renderScenario)
+}
+
+if (elements.why) {
+  elements.why.addEventListener("click", revealWhy)
 }
 
 renderScenario()

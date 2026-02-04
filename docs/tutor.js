@@ -295,6 +295,7 @@ const handleGuess = choice => {
     stats.correct += 1
     stats.attempts += 1
     stats.streak += 1
+    stats.missed = stats.missed.filter(label => label !== currentTile.label)
     elements.feedback.textContent = `Correct! This is ${currentTile.label}.`
     elements.feedback.dataset.state = "correct"
   } else {

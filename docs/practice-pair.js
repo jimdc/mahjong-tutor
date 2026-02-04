@@ -48,6 +48,8 @@ const elements = {
   display: document.getElementById("pairDisplay"),
   options: document.getElementById("pairOptions"),
   feedback: document.getElementById("pairFeedback"),
+  why: document.getElementById("pairWhy"),
+  whyList: document.getElementById("pairWhyList"),
   next: document.getElementById("pairNext"),
   statCorrect: document.getElementById("statCorrect"),
   statAttempts: document.getElementById("statAttempts"),
@@ -62,6 +64,8 @@ const stats = createPracticeStats("practice-pair", {
 
 let current = null
 let lastLabel = null
+let whyIndex = 0
+let whySteps = []
 
 const buildTileNode = label => {
   const meta = tileMeta(label)
@@ -103,6 +107,10 @@ const renderPair = () => {
   elements.display.innerHTML = ""
   elements.display.appendChild(buildTileNode(current))
   elements.feedback.textContent = ""
+  if (elements.whyList) elements.whyList.innerHTML = ""
+  if (elements.why) elements.why.disabled = true
+  whyIndex = 0
+  whySteps = []
   elements.next.disabled = true
 
   const distractors = shuffle(PAIR_TILES.filter(tile => tile !== current)).slice(0, 3)
@@ -147,6 +155,7 @@ const handleChoice = option => {
   elements.feedback.dataset.state = correct ? "correct" : "wrong"
   stats.record(correct)
   elements.next.disabled = false
+  if (elements.why) elements.why.disabled = false
   elements.options.querySelectorAll("button").forEach(button => {
     button.disabled = true
     if (button.dataset.label === current) {
@@ -157,8 +166,30 @@ const handleChoice = option => {
   })
 }
 
+const revealWhy = () => {
+  if (!elements.whyList) return
+  if (!whySteps.length) {
+    whySteps = [
+      "Rule: a pair is two identical tiles.",
+      `${current} matches the tile shown.`
+    ]
+  }
+  if (whyIndex >= whySteps.length) return
+  const li = document.createElement("li")
+  li.textContent = whySteps[whyIndex]
+  elements.whyList.appendChild(li)
+  whyIndex += 1
+  if (elements.why && whyIndex >= whySteps.length) {
+    elements.why.disabled = true
+  }
+}
+
 if (elements.next) {
   elements.next.addEventListener("click", renderPair)
+}
+
+if (elements.why) {
+  elements.why.addEventListener("click", revealWhy)
 }
 
 renderPair()

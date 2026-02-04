@@ -43,6 +43,8 @@ const elements = {
   row: document.getElementById("sequenceRow"),
   options: document.getElementById("sequenceOptions"),
   feedback: document.getElementById("sequenceFeedback"),
+  why: document.getElementById("sequenceWhy"),
+  whyList: document.getElementById("sequenceWhyList"),
   next: document.getElementById("sequenceNext"),
   statCorrect: document.getElementById("statCorrect"),
   statAttempts: document.getElementById("statAttempts"),
@@ -57,6 +59,8 @@ const stats = createPracticeStats("practice-sequence", {
 
 let current = null
 let lastId = null
+let whyIndex = 0
+let whySteps = []
 
 const tileMeta = (suit, number) => ({
   label: `${number} ${suit.label}`,
@@ -73,6 +77,9 @@ const renderSequence = () => {
   lastId = current.id
 
   elements.feedback.textContent = ""
+  if (elements.whyList) elements.whyList.innerHTML = ""
+  if (elements.why) elements.why.disabled = true
+  whyIndex = 0
   elements.next.disabled = true
 
   elements.row.innerHTML = ""
@@ -92,6 +99,11 @@ const renderSequence = () => {
   })
 
   const correctNumber = current.tiles[current.missingIndex]
+  const meta = tileMeta(current.suit, correctNumber)
+  whySteps = [
+    "Rule: a chow is three consecutive tiles in the same suit.",
+    `${meta.label} completes the sequence.`
+  ]
   const options = shuffle(
     [correctNumber, ...shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9].filter(num => num !== correctNumber)).slice(0, 3)]
   )
@@ -137,6 +149,7 @@ const handleChoice = number => {
   elements.feedback.dataset.state = correct ? "correct" : "wrong"
   stats.record(correct)
   elements.next.disabled = false
+  if (elements.why) elements.why.disabled = false
   elements.options.querySelectorAll("button").forEach(button => {
     button.disabled = true
     if (button.querySelector("img") && button.querySelector("img").alt === meta.label) {
@@ -147,8 +160,24 @@ const handleChoice = number => {
   })
 }
 
+const revealWhy = () => {
+  if (!elements.whyList || !whySteps.length) return
+  if (whyIndex >= whySteps.length) return
+  const li = document.createElement("li")
+  li.textContent = whySteps[whyIndex]
+  elements.whyList.appendChild(li)
+  whyIndex += 1
+  if (elements.why && whyIndex >= whySteps.length) {
+    elements.why.disabled = true
+  }
+}
+
 if (elements.next) {
   elements.next.addEventListener("click", renderSequence)
+}
+
+if (elements.why) {
+  elements.why.addEventListener("click", revealWhy)
 }
 
 renderSequence()
