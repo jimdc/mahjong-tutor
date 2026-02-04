@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mahjong Tutor - Prevailing Wind</title>
+    <link rel="stylesheet" href="styles.css?v=20260203" />
+  </head>
+  <body>
+    <div class="tutor">
+      <nav class="learning-nav">
+        <a class="learning-nav__link" href="index.html">1. Tile Quiz</a>
+        <a class="learning-nav__link" href="coach.html">2. Hand Coach</a>
+        <a class="learning-nav__link" href="practice.html">3. Practice</a>
+        <a class="learning-nav__link" href="glossary.html">4. Glossary</a>
+        <a class="learning-nav__link" href="rules.html">5. Rules</a>
+        <a class="learning-nav__link" href="win.html">6. Winning</a>
+        <a class="learning-nav__link" href="history.html">7. History</a>
+      </nav>
+
+      <header class="tutor-header">
+        <p class="tutor-kicker">Practice</p>
+        <h1>Prevailing Wind</h1>
+        <p class="tutor-subtitle">Understand round wind vs seat wind.</p>
+      </header>
+
+      <section class="tutor-card">
+        <p class="glossary-note">In many rule sets, the prevailing wind (round wind) changes after all players have had the East seat. Your seat wind is your position; the prevailing wind applies to everyone.</p>
+        <div class="seat-drill__label" id="prevPrompt">If the prevailing wind is East and your seat is South, which wind gives you bonus value?</div>
+        <div class="tutor-options" id="prevOptions"></div>
+        <p class="tutor-feedback" id="prevFeedback"></p>
+        <div class="tutor-actions">
+          <button class="tutor-next" id="prevNext" type="button">Next question</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="practice-prevailing.js?v=20260203"></script>
+  </body>
+</html>
