@@ -724,3 +724,25 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+.round-track {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.round-chip {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(123, 45, 28, 0.2);
+  background: #fffdf9;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.round-chip.is-active {
+  background: #fff0df;
+  color: var(--accent-deep);
+  border-color: rgba(123, 45, 28, 0.35);
+}
