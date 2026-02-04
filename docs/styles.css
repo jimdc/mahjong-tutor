@@ -784,3 +784,11 @@ h1 {
   color: var(--accent-deep);
   font-weight: 600;
 }
+
+.practice-back {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  text-decoration: none;
+  color: var(--accent-deep);
+  font-weight: 600;
+}
