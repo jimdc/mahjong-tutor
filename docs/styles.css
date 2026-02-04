@@ -685,3 +685,42 @@ h1 {
   height: 80px;
   object-fit: contain;
 }
+
+.seat-drill {
+  display: grid;
+  gap: 1rem;
+}
+
+.seat-drill__label {
+  font-weight: 600;
+  color: var(--accent-deep);
+}
+
+.seat-drill__table {
+  display: grid;
+  grid-template-areas:
+    ". north ."
+    "west center east"
+    ". south .";
+  grid-template-columns: 1fr 1.2fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 0.75rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.seat-drill__table .seat--north { grid-area: north; }
+.seat-drill__table .seat--south { grid-area: south; }
+.seat-drill__table .seat--west { grid-area: west; }
+.seat-drill__table .seat--east { grid-area: east; }
+
+@media (max-width: 700px) {
+  .seat-drill__table {
+    grid-template-areas:
+      "north"
+      "east"
+      "south"
+      "west";
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mahjong Tutor - Seat Winds Practice</title>
+    <link rel="stylesheet" href="styles.css?v=20260203" />
+  </head>
+  <body>
+    <div class="tutor">
+      <nav class="learning-nav">
+        <a class="learning-nav__link" href="index.html">1. Tile Quiz</a>
+        <a class="learning-nav__link" href="coach.html">2. Hand Coach</a>
+        <a class="learning-nav__link" href="practice.html">3. Practice</a>
+        <a class="learning-nav__link" href="glossary.html">4. Glossary</a>
+        <a class="learning-nav__link" href="rules.html">5. Rules</a>
+        <a class="learning-nav__link" href="win.html">6. Winning</a>
+        <a class="learning-nav__link" href="history.html">7. History</a>
+      </nav>
+
+      <header class="tutor-header">
+        <p class="tutor-kicker">Practice</p>
+        <h1>Seat Winds</h1>
+        <p class="tutor-subtitle">Practice the seat order and rotation: East → South → West → North.</p>
+      </header>
+
+      <section class="tutor-card">
+        <div class="seat-drill" id="seatDrill">
+          <div class="seat-drill__label" id="seatPrompt">Who sits to the left of East?</div>
+          <div class="seat-drill__table" id="seatTable">
+            <div class="seat seat--north"><span class="seat__label">North</span></div>
+            <div class="seat seat--west"><span class="seat__label">West</span></div>
+            <div class="seat seat--east"><span class="seat__label">East</span></div>
+            <div class="seat seat--south"><span class="seat__label">South</span></div>
+          </div>
+        </div>
+        <div class="tutor-options" id="seatOptions"></div>
+        <p class="tutor-feedback" id="seatFeedback"></p>
+        <div class="tutor-actions">
+          <button class="tutor-next" id="seatNext" type="button">Next question</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="practice-seats.js?v=20260203"></script>
+  </body>
+</html>
