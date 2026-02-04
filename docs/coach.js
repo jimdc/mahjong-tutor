@@ -221,7 +221,7 @@ const renderChoices = () => {
 
     button.appendChild(img)
     button.appendChild(glyphSpan)
-    button.addEventListener("click", () => handleChoice(tile))
+    button.addEventListener("click", () => handleChoice(tile, button))
     elements.choices.appendChild(button)
   })
 }
@@ -240,7 +240,7 @@ const loadScenario = () => {
   renderChoices()
 }
 
-const handleChoice = tile => {
+const handleChoice = (tile, buttonEl) => {
   const correct = tile === current.bestDiscard
 
   if (correct) {
@@ -260,12 +260,10 @@ const handleChoice = tile => {
     })
   } else {
     // keep other options available so the player can try again
-    elements.choices.querySelectorAll("button").forEach(button => {
-      if (button.textContent === tile) {
-        button.disabled = true
-        button.classList.add("wrong")
-      }
-    })
+    if (buttonEl) {
+      buttonEl.disabled = true
+      buttonEl.classList.add("wrong")
+    }
   }
 }
 

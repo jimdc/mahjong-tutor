@@ -1,38 +1,52 @@
 # Mahjong Tutor
 
-A fast, static Mahjong learning app designed for GitHub Pages. It focuses on visual recognition, decision practice, a beginner-friendly glossary, and separate rules + winning guides.
+A beginner‑first, interactive Mahjong learning experience. This project goes beyond static explanations by turning core concepts into visual drills, feedback loops, and step‑by‑step practice that builds real table intuition.
 
-## Current Features
-- Tile Recognition quiz with real SVG tiles and Unicode fallback.
-- Context notes and expandable “Why it’s called that” explanations.
-- Hand Coach: interactive discard decisions with feedback and tips.
-- Raw vs grouped hand toggle for intuition building.
-- Glossary: zero-to-confident concepts with chess/checkers analogies and Mandarin terms.
-- Rules: visual turn flow with opponent lane and discard pool.
-- Winning: rule-set differences and example hands.
-- Fully static site under `docs/` for GitHub Pages.
-- Cache-busted CSS/JS via `?v=YYYYMMDD` query strings.
+## What Makes It Better Than Reading Wikipedia
+- You practice recognition, not just read definitions.
+- You get immediate feedback and “why” explanations.
+- You see turn flow, claims, and discard pools animated in context.
+- You build intuition through repetition, not just memorization.
+- You can track progress locally and focus on weak spots.
 
-## How To Run (Local)
-Open `docs/index.html` in a browser.
+## Learning Path
+1. Tile Quiz to learn names and visual motifs.
+2. Glossary with analogies (chess/checkers) and Mandarin terms.
+3. Practice drills to reinforce recognition and decision making.
+4. Hand Coach to learn grouping, melds, and discards.
+5. Rules and Winning pages to see full round flow and win structures.
 
-## GitHub Pages
-In repo settings → Pages:
-- Source: Deploy from a branch
-- Branch: `main`
-- Folder: `/docs`
+## Interactive Modules
+- **Tile Quiz**: SVG tiles with Unicode fallback, hover labels, “why it’s called that” notes, focus filter (All/Suits/Honors), and persistent stats.
+- **Hand Coach**: Choose discards from real hands with grouped vs raw views, hints, and retry‑on‑wrong choices so you learn by correction.
+- **Practice Hub**: Progress snapshot, recommended next drill, and a beginner path checklist.
 
-The site will be available at:
-`https://jimdc.github.io/mahjong-tutor/`
+## Practice Drills
+- **Tile Recognition**: Winds, honors, suits, and dragon names (Zhong/Fa/Bai).
+- **Table Flow**: Seat winds and prevailing wind drills.
+- **Melds & Structure**: Meld identification, complete the chow, find the pair, winning hand types.
+- **Decision Making**: Claiming discards (chow/pung/kong/win/pass) and discard safety.
 
-## TODO / Next Logical Steps
-- Add more Hand Coach scenarios and difficulty tiers.
-- Add a real shanten/progress indicator in Hand Coach.
-- Add tile filters (suits-only, honors-only, mixed) to the quiz.
-- Add a “review missed tiles” mode.
-- Add rule-set toggle (Riichi / Chinese / American) for rules + examples.
-- Add sound and accessibility options (high-contrast, large tiles).
-- Add lightweight analytics (local-only) for streaks and accuracy.
+## Visual Learning Aids
+- Interactive turn flow with opponent lane and discard pool.
+- Table view showing four seats and the shared pool.
+- Wall and dead‑wall visuals to explain draws and replacements.
+- Winning page with visual sequences and rule‑set differences.
+- Glossary that builds from zero knowledge with analogies and color cues.
+- History page that situates Mahjong culturally and regionally.
 
-## Notes
-This README should be updated whenever features or workflow change.
+## Built For Beginners
+- Clear language, minimal jargon, and progressive disclosure.
+- Visual memory cues on every drill.
+- Consistent feedback that explains why, not just correct/incorrect.
+
+## Tech Notes
+- 100% static site (no server required).
+- Progress stored locally in the browser.
+- Cache‑busted assets to keep updates visible.
+
+## Next Logical Steps
+- Scoring primers for common rule sets (Riichi, Chinese Official, American).
+- Spaced‑repetition scheduling for drills.
+- A simple table simulator for call priority and open melds.
+- Accessibility options (high‑contrast, large tiles, reduced motion).

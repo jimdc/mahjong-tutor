@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mahjong Tutor - Rules</title>
-    <link rel="stylesheet" href="styles.css?v=20260203" />
+    <link rel="stylesheet" href="styles.css?v=20260204-1" />
   </head>
   <body>
     <div class="tutor">
@@ -54,7 +54,7 @@
               </div>
             </div>
             <p class="flow-caption" id="flowCaption"></p>
-            <p class="glossary-note">Standard Mahjong is 4 players. Each player takes the same turn sequence.</p>
+            <p class="glossary-note">Standard Mahjong is 4 players; this tutor uses a 2-player view to keep the flow readable.</p>
           </div>
         </div>
 
@@ -116,10 +116,38 @@
             </div>
           </div>
         </div>
+
+        <div class="glossary-section">
+          <h2>Wall & Dead Wall</h2>
+          <p class="glossary-note">Tiles start stacked in the wall. Players draw from the live wall; the dead wall is reserved for bonus draws and indicators.</p>
+          <div class="wall-view">
+            <div class="wall-stack">
+              <span class="wall-stack__label">Live Wall (Draws)</span>
+              <div class="wall-stack__tiles">
+                <div class="tile-back"></div>
+                <div class="tile-back"></div>
+                <div class="tile-back"></div>
+                <div class="tile-back"></div>
+                <div class="tile-back"></div>
+                <div class="tile-back"></div>
+              </div>
+            </div>
+            <div class="wall-stack wall-stack--dead">
+              <span class="wall-stack__label">Dead Wall</span>
+              <div class="wall-stack__tiles">
+                <div class="tile-back"></div>
+                <div class="tile-back"></div>
+                <div class="tile-back"></div>
+                <div class="tile-back"></div>
+              </div>
+            </div>
+          </div>
+          <p class="glossary-note">When someone declares a kong, they draw a replacement tile from the dead wall.</p>
+        </div>
       </section>
     </div>
 
-    <script src="tile_labels.js?v=20260203"></script>
-    <script src="rules.js?v=20260203"></script>
+    <script src="tile_labels.js?v=20260204-1"></script>
+    <script src="rules.js?v=20260204-1"></script>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mahjong Tutor - Practice</title>
-    <link rel="stylesheet" href="styles.css?v=20260203" />
+    <link rel="stylesheet" href="styles.css?v=20260204-1" />
   </head>
   <body>
     <div class="tutor">
@@ -37,33 +37,153 @@
             <img src="tiles/MJReddragon.svg" alt="Red Dragon" />
           </div>
         </div>
+
+        <div class="practice-summary">
+          <h2>Progress Snapshot</h2>
+          <p class="glossary-note">Your stats are saved locally in this browser.</p>
+          <div class="summary-grid" id="practiceSummary"></div>
+        </div>
+
+        <div class="practice-recommend">
+          <h2>Recommended Next Drill</h2>
+          <p class="glossary-note">We picked the drill that needs the most attention.</p>
+          <div class="summary-grid" id="practiceRecommend"></div>
+        </div>
+
+        <div class="practice-path">
+          <h2>Beginner Path</h2>
+          <p class="glossary-note">Check off the steps as you go.</p>
+          <div class="path-list" id="practicePath"></div>
+        </div>
+
+        <h2 class="practice-section-title">Tile Recognition</h2>
         <div class="glossary-grid">
           <a class="practice-card" href="practice-winds.html">
             <h3>Winds (East/South/West/North)</h3>
             <p>Quick recognition drill for directional honor tiles.</p>
+            <div class="practice-card__row">
+              <img src="tiles/MJEastwind.svg" alt="East Wind" />
+              <img src="tiles/MJSouthwind.svg" alt="South Wind" />
+              <img src="tiles/MJWestwind.svg" alt="West Wind" />
+              <img src="tiles/MJNorthwind.svg" alt="North Wind" />
+            </div>
           </a>
           <a class="practice-card" href="practice-honors.html">
             <h3>Honor Tiles (Winds + Dragons)</h3>
             <p>Mix winds and dragons for fast recognition.</p>
+            <div class="practice-card__row">
+              <img src="tiles/MJEastwind.svg" alt="East Wind" />
+              <img src="tiles/MJReddragon.svg" alt="Red Dragon" />
+              <img src="tiles/MJbaida.svg" alt="White Dragon" />
+            </div>
           </a>
+          <a class="practice-card" href="practice-suits.html">
+            <h3>Suit Identification</h3>
+            <p>Dots, Bamboo, or Characters? Name the suit.</p>
+            <div class="practice-card__row">
+              <img src="tiles/MJ2bing.svg" alt="2 Dot" />
+              <img src="tiles/MJ6tiao.svg" alt="6 Bamboo" />
+              <img src="tiles/MJ8wan.svg" alt="8 Character" />
+            </div>
+          </a>
+          <a class="practice-card" href="practice-dragons.html">
+            <h3>Dragons (Zhong / Fa / Bai)</h3>
+            <p>Learn the three dragons with their Chinese names.</p>
+            <div class="practice-card__row">
+              <img src="tiles/MJReddragon.svg" alt="Red Dragon" />
+              <img src="tiles/MJGreendragon.svg" alt="Green Dragon" />
+              <img src="tiles/MJbaida.svg" alt="White Dragon" />
+            </div>
+          </a>
+        </div>
+
+        <h2 class="practice-section-title">Table & Round Flow</h2>
+        <div class="glossary-grid">
           <a class="practice-card" href="practice-seats.html">
             <h3>Seat Winds & Rotation</h3>
             <p>Learn the seat order and who is next.</p>
+            <div class="practice-card__row">
+              <img src="tiles/MJEastwind.svg" alt="East Wind" />
+              <img src="tiles/MJSouthwind.svg" alt="South Wind" />
+              <img src="tiles/MJWestwind.svg" alt="West Wind" />
+              <img src="tiles/MJNorthwind.svg" alt="North Wind" />
+            </div>
           </a>
           <a class="practice-card" href="practice-prevailing.html">
             <h3>Prevailing Wind</h3>
             <p>Understand round wind vs seat wind.</p>
+            <div class="practice-card__row">
+              <img src="tiles/MJEastwind.svg" alt="East Wind" />
+              <img src="tiles/MJSouthwind.svg" alt="South Wind" />
+              <img src="tiles/MJWestwind.svg" alt="West Wind" />
+            </div>
           </a>
+        </div>
+
+        <h2 class="practice-section-title">Melds & Structure</h2>
+        <div class="glossary-grid">
           <a class="practice-card" href="practice-melds.html">
             <h3>Meld Types (Chow/Pung/Kong/Pair)</h3>
             <p>Identify the meld from a set of tiles.</p>
+            <div class="practice-card__row">
+              <img src="tiles/MJ3bing.svg" alt="3 Dot" />
+              <img src="tiles/MJ4bing.svg" alt="4 Dot" />
+              <img src="tiles/MJ5bing.svg" alt="5 Dot" />
+            </div>
+          </a>
+          <a class="practice-card" href="practice-sequence.html">
+            <h3>Complete the Chow</h3>
+            <p>Pick the missing tile to finish a sequence.</p>
+            <div class="practice-card__row">
+              <img src="tiles/MJ2bing.svg" alt="2 Dot" />
+              <img src="tiles/MJ3bing.svg" alt="3 Dot" />
+              <img src="tiles/MJ4bing.svg" alt="4 Dot" />
+            </div>
+          </a>
+          <a class="practice-card" href="practice-pair.html">
+            <h3>Find the Pair</h3>
+            <p>Choose the tile that makes a pair.</p>
+            <div class="practice-card__row">
+              <img src="tiles/MJ5wan.svg" alt="5 Character" />
+              <img src="tiles/MJ5wan.svg" alt="5 Character" />
+            </div>
           </a>
           <a class="practice-card" href="practice-winning.html">
             <h3>Winning Hand Types</h3>
             <p>Recognize common winning hand shapes.</p>
+            <div class="practice-card__row">
+              <img src="tiles/MJ2bing.svg" alt="2 Dot" />
+              <img src="tiles/MJ3bing.svg" alt="3 Dot" />
+              <img src="tiles/MJ4bing.svg" alt="4 Dot" />
+            </div>
+          </a>
+        </div>
+
+        <h2 class="practice-section-title">Decision Making</h2>
+        <div class="glossary-grid">
+          <a class="practice-card" href="practice-calls.html">
+            <h3>Claiming Discards</h3>
+            <p>Decide whether you can chow, pung, kong, win, or pass.</p>
+            <div class="practice-card__row">
+              <img src="tiles/MJ4bing.svg" alt="4 Dot" />
+              <img src="tiles/MJ4bing.svg" alt="4 Dot" />
+              <img src="tiles/MJ4bing.svg" alt="4 Dot" />
+            </div>
+          </a>
+          <a class="practice-card" href="practice-safety.html">
+            <h3>Discard Safety</h3>
+            <p>Choose safe tiles based on what is already visible.</p>
+            <div class="practice-card__row">
+              <img src="tiles/MJ7bing.svg" alt="7 Dot" />
+              <img src="tiles/MJ7bing.svg" alt="7 Dot" />
+              <img src="tiles/MJ7bing.svg" alt="7 Dot" />
+            </div>
           </a>
         </div>
       </section>
     </div>
+
+    <script src="tile_labels.js?v=20260204-1"></script>
+    <script src="practice-home.js?v=20260204-1"></script>
   </body>
 </html>

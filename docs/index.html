@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mahjong Tutor - Tile Quiz</title>
-    <link rel="stylesheet" href="styles.css?v=20260203" />
+    <link rel="stylesheet" href="styles.css?v=20260204-1" />
   </head>
   <body>
     <div class="tutor">
@@ -22,7 +22,25 @@
         <p class="tutor-kicker">Mahjong Tutor</p>
         <h1>Tile Recognition</h1>
         <p class="tutor-subtitle">Identify the tile by name. Start with the basics: suits, winds, and dragons.</p>
+        <div class="quiz-filter">
+          <label for="quizFilter">Focus</label>
+          <select id="quizFilter">
+            <option value="all">All tiles</option>
+            <option value="suit">Suits only</option>
+            <option value="honor">Honors only</option>
+          </select>
+        </div>
       </header>
+
+      <section class="tutor-card tutor-card--mini">
+        <h2>Start Here</h2>
+        <p class="tutor-subtitle">A short path that takes you from zero knowledge to your first winning hand.</p>
+        <div class="start-steps">
+          <a class="start-step" href="index.html">1. Tile Quiz (learn tile names)</a>
+          <a class="start-step" href="glossary.html">2. Glossary (learn the concepts)</a>
+          <a class="start-step" href="practice.html">3. Practice (drills + feedback)</a>
+        </div>
+      </section>
 
       <section class="tutor-card">
         <div class="tutor-tile" id="tile">
@@ -47,13 +65,27 @@
           <span class="tutor-stat-value" id="score">0</span>
         </div>
         <div class="tutor-stat">
+          <span class="tutor-stat-label">Attempts</span>
+          <span class="tutor-stat-value" id="attempts">0</span>
+        </div>
+        <div class="tutor-stat">
+          <span class="tutor-stat-label">Accuracy</span>
+          <span class="tutor-stat-value" id="accuracy">0%</span>
+        </div>
+        <div class="tutor-stat">
           <span class="tutor-stat-label">Streak</span>
           <span class="tutor-stat-value" id="streak">0</span>
         </div>
       </section>
+
+      <section class="tutor-card tutor-card--mini tutor-missed">
+        <h2>Recent Misses</h2>
+        <p class="tutor-subtitle">These are the tiles you last missed — great targets for quick review.</p>
+        <ul class="tutor-missed__list" id="missedList"></ul>
+      </section>
     </div>
 
-    <script src="tile_labels.js?v=20260203"></script>
-    <script src="tutor.js?v=20260203"></script>
+    <script src="tile_labels.js?v=20260204-1"></script>
+    <script src="tutor.js?v=20260204-1"></script>
   </body>
 </html>
