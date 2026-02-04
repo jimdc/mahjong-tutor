@@ -55,9 +55,15 @@ const stats = createPracticeStats("practice-melds", {
 })
 
 let current = null
+let lastAnswer = null
 
 const renderSet = () => {
-  current = SETS[Math.floor(Math.random() * SETS.length)]
+  let next = SETS[Math.floor(Math.random() * SETS.length)]
+  while (next.answer === lastAnswer && SETS.length > 1) {
+    next = SETS[Math.floor(Math.random() * SETS.length)]
+  }
+  current = next
+  lastAnswer = current.answer
   elements.tiles.innerHTML = ""
   elements.feedback.textContent = ""
   elements.next.disabled = true

@@ -67,9 +67,15 @@ const stats = createPracticeStats("practice-winning", {
 })
 
 let current = null
+let lastLabel = null
 
 const renderHand = () => {
-  current = HANDS[Math.floor(Math.random() * HANDS.length)]
+  let next = HANDS[Math.floor(Math.random() * HANDS.length)]
+  while (next.label === lastLabel && HANDS.length > 1) {
+    next = HANDS[Math.floor(Math.random() * HANDS.length)]
+  }
+  current = next
+  lastLabel = current.label
   elements.tiles.innerHTML = ""
   elements.feedback.textContent = ""
   elements.next.disabled = true

@@ -37,9 +37,15 @@ const stats = createPracticeStats("practice-honors", {
 
 let current = null
 let choices = []
+let lastId = null
 
 const setTile = () => {
-  current = HONORS[Math.floor(Math.random() * HONORS.length)]
+  let next = HONORS[Math.floor(Math.random() * HONORS.length)]
+  while (next.id === lastId && HONORS.length > 1) {
+    next = HONORS[Math.floor(Math.random() * HONORS.length)]
+  }
+  current = next
+  lastId = current.id
   choices = shuffle(HONORS).slice(0, 4)
   if (!choices.find(c => c.id === current.id)) {
     choices[Math.floor(Math.random() * choices.length)] = current

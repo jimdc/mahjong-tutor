@@ -34,9 +34,15 @@ const stats = createPracticeStats("practice-winds", {
 
 let current = null
 let choices = []
+let lastId = null
 
 const setTile = () => {
-  current = WINDS[Math.floor(Math.random() * WINDS.length)]
+  let next = WINDS[Math.floor(Math.random() * WINDS.length)]
+  while (next.id === lastId && WINDS.length > 1) {
+    next = WINDS[Math.floor(Math.random() * WINDS.length)]
+  }
+  current = next
+  lastId = current.id
   choices = shuffle(WINDS)
 
   elements.glyph.textContent = current.glyph

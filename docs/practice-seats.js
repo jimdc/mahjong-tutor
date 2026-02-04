@@ -57,9 +57,15 @@ const stats = createPracticeStats("practice-seats", {
 })
 
 let current = null
+let lastPrompt = null
 
 const renderQuestion = () => {
-  current = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)]
+  let next = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)]
+  while (next.prompt === lastPrompt && QUESTIONS.length > 1) {
+    next = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)]
+  }
+  current = next
+  lastPrompt = current.prompt
   elements.prompt.textContent = current.prompt
   elements.feedback.textContent = ""
   elements.next.disabled = true
