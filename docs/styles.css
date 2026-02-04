@@ -658,3 +658,30 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+.practice-card {
+  display: block;
+  padding: 1.2rem 1.4rem;
+  border-radius: 16px;
+  border: 1px solid rgba(123, 45, 28, 0.12);
+  background: #fffdf9;
+  color: inherit;
+  text-decoration: none;
+}
+
+.practice-card:hover {
+  background: #fff2e1;
+}
+
+.practice-row {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.practice-row img {
+  width: 58px;
+  height: 80px;
+  object-fit: contain;
+}
