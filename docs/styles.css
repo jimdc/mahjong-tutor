@@ -1082,6 +1082,14 @@ h1 {
   accent-color: var(--accent-deep);
 }
 
+.evidence-card {
+  margin: 1rem 0;
+  padding: 1rem 1.2rem;
+  border-radius: 18px;
+  border: 1px dashed rgba(123, 45, 28, 0.2);
+  background: #fffaf4;
+}
+
 .sequence-row {
   display: flex;
   justify-content: center;

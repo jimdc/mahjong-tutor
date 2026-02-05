@@ -9,6 +9,11 @@ A beginner‑first, interactive Mahjong learning experience. This project goes b
 - You build intuition through repetition and targeted drills.
 - The tutor adapts to your weak spots and nudges you forward.
 
+## Guiding Principles
+- “The most important thing is to start with the user interface… try different ideas and iterate quickly.” —*Designing Interactions* (Moggridge)
+- “The greatest value of a picture is when it forces us to notice what we never expected to see.” —John Tukey, quoted in *The Truthful Art* (Cairo)
+- “A visualization is any kind of visual representation of information designed to enable communication, analysis, discovery, exploration…” —*The Truthful Art*
+
 ## Learning Path
 1. Tile Quiz to learn names and visual motifs.
 2. Glossary with analogies (chess/checkers) and Mandarin terms.
