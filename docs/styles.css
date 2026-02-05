@@ -483,6 +483,24 @@ h1 {
   border-radius: 16px;
   padding: 1rem;
   background: #fff8ee;
+  position: relative;
+}
+
+.flow-card.is-animating .flow-hand,
+.flow-card.is-animating .flow-row,
+.flow-card.is-animating .flow-caption {
+  animation: flow-pop 0.28s ease;
+}
+
+@keyframes flow-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .flow-turn {
@@ -1088,6 +1106,42 @@ h1 {
   border-radius: 18px;
   border: 1px dashed rgba(123, 45, 28, 0.2);
   background: #fffaf4;
+}
+
+.practice-table {
+  margin: 1rem 0;
+  padding: 1rem 1.2rem;
+  border-radius: 18px;
+  border: 1px solid rgba(123, 45, 28, 0.12);
+  background: #fffdf9;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid rgba(123, 45, 28, 0.12);
+  text-align: left;
+}
+
+.data-table th {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.data-table a {
+  color: var(--accent-deep);
+  text-decoration: none;
 }
 
 .sequence-row {

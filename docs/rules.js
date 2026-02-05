@@ -86,6 +86,7 @@ const state = {
 }
 
 const elements = {
+  card: document.querySelector(".flow-card"),
   hand: document.getElementById("flowHand"),
   pool: document.getElementById("flowPool"),
   opponentPool: document.getElementById("flowOpponentPool"),
@@ -120,6 +121,13 @@ const renderFaceDown = (target, count) => {
 
 const render = () => {
   const step = FLOW_STEPS[state.index]
+  if (elements.card) {
+    elements.card.classList.remove("is-animating")
+    // force reflow
+    void elements.card.offsetWidth
+    elements.card.classList.add("is-animating")
+    setTimeout(() => elements.card && elements.card.classList.remove("is-animating"), 300)
+  }
   renderTiles(elements.hand, step.tiles)
   renderTiles(elements.pool, step.pool)
   renderTiles(elements.opponentPool, step.opponentPool || [])

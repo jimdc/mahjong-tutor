@@ -98,6 +98,31 @@ const renderRecommendation = () => {
   recommendEl.appendChild(card)
 }
 
+const renderDataTable = () => {
+  const tableEl = document.getElementById("practiceDataTable")
+  if (!tableEl) return
+
+  tableEl.innerHTML = ""
+
+  const header = document.createElement("tr")
+  header.innerHTML = "<th>Drill</th><th>Attempts</th><th>Correct</th><th>Accuracy</th><th>Streak</th>"
+  tableEl.appendChild(header)
+
+  PRACTICE_DRILLS.forEach(drill => {
+    const stats = loadStats(drill.key)
+    const accuracy = stats.attempts ? Math.round((stats.correct / stats.attempts) * 100) : 0
+    const row = document.createElement("tr")
+    row.innerHTML = `
+      <td><a href="${drill.href}">${drill.label}</a></td>
+      <td>${stats.attempts}</td>
+      <td>${stats.correct}</td>
+      <td>${accuracy}%</td>
+      <td>${stats.streak}</td>
+    `
+    tableEl.appendChild(row)
+  })
+}
+
 const renderPath = () => {
   const pathEl = document.getElementById("practicePath")
   if (!pathEl) return
@@ -136,4 +161,5 @@ const renderPath = () => {
 
 renderSummary()
 renderRecommendation()
+renderDataTable()
 renderPath()
