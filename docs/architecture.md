@@ -102,3 +102,27 @@ No CLI, no API, no MCP tools.
 - The reference books in the root (`designing_interactions.pdf`,
   `the_truthful_art.epub`) are cangshu-indexed sources for the broader
   estate — this project does not read them programmatically.
+
+## TL;DR
+
+20 HTML pages (8 main + 12 drills), ~42 SVG tile assets, 5 named JS modules plus 12 drill scripts, localStorage as the only state store, 1 hard rule: no server, no build step, no runtime writes beyond localStorage.
+
+1. User opens any `docs/*.html` page directly in a browser — no server or build step required.
+2. The page loads its paired JS module (e.g., `tutor.js` for the Tile Quiz, `coach.js` for the Hand Coach).
+3. The JS module initializes its data array (e.g., the 36-tile TILES array with SVG paths, or SCENARIOS for the hand coach).
+4. On load, the drill reads its own localStorage key (e.g., `tile-quiz-stats`) to restore prior progress.
+5. The user works through the drill — answering quiz questions or selecting discards — and receives immediate step-by-step feedback.
+6. On each answer, the drill writes updated stats (`{ correct, attempts, streak, missed? }`) back to its localStorage key.
+7. `next-up.js` reads all drill localStorage keys to surface an adaptive mentor recommendation card on any page.
+8. `practice-home.js` aggregates all drill localStorage keys for the Practice Hub's stats summary and PATH_STEPS beginner-path checklist.
+
+## Check yourself
+
+**Q:** Where is all user progress stored, and what shape does each drill's record take?
+**A:** In localStorage; each drill writes its own key (e.g., `tile-quiz-stats`, `practice-winds`) with shape `{ correct, attempts, streak, missed? }`.
+
+**Q:** `next-up.js` throws an error mid-page-load — what drill data is lost?
+**A:** No drill data is lost; each drill writes its own localStorage key independently. `next-up.js` only reads those keys to render the adaptive mentor card, so its failure affects only that recommendation UI, not any stored stats.
+
+**Q:** The doc states one hard invariant about runtime state — what is it?
+**A:** No server-side state and no files written at runtime; all state is localStorage only, and the site is fully self-contained with no external runtime dependencies.
