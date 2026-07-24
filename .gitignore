@@ -1,3 +1,12 @@
 .DS_Store
 designing_interactions.pdf
 the_truthful_art.epub
+
+# agent/estate scaffolding stays local, never public
+AGENTS.md
+CLAUDE.md
+backlog/
+PAPERCUTS.md
+.scrimignore
+.claude/
+.agents/
